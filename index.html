@@ -11,18 +11,19 @@
 <body>
 
 <nav class="site-nav" role="navigation" aria-label="Primary">
-  <a href="#" class="brand" data-tab="home">ThermoGen Biotech</a>
-  <ul class="nav-tabs" role="tablist">
-    <li role="presentation"><button role="tab" aria-selected="true"  data-tab="home">Home</button></li>
-    <li role="presentation"><button role="tab" aria-selected="false" data-tab="technology">Technology</button></li>
-    <li role="presentation"><button role="tab" aria-selected="false" data-tab="about">About</button></li>
-    <li role="presentation"><button role="tab" aria-selected="false" data-tab="ip">IP and Patents</button></li>
-    <li role="presentation"><button role="tab" aria-selected="false" data-tab="contact">Contact</button></li>
+  <a href="#home" class="brand" data-scroll="home">ThermoGen Biotech</a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-tabs" aria-label="Open menu">&#9776;</button>
+  <ul class="nav-tabs" id="nav-tabs" role="list">
+    <li><a href="#home" data-scroll="home" aria-current="true">Home</a></li>
+    <li><a href="#technology" data-scroll="technology">Technology</a></li>
+    <li><a href="#about" data-scroll="about">About</a></li>
+    <li><a href="#ip" data-scroll="ip">IP and Patents</a></li>
+    <li><a href="#contact" data-scroll="contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- ============================== HOME ============================== -->
-<section id="tab-home" class="tab-panel is-active" role="tabpanel">
+<section id="home" class="page-section" aria-label="Home">
 
   <div class="hero">
     <div class="hero-inner">
@@ -38,14 +39,14 @@
           systematically access and translate this biology into commercial
           products.
         </p>
-        <button class="btn-primary" data-tab="contact">Get in touch</button>
+        <a href="#contact" class="btn-primary" data-scroll="contact">Get in touch</a>
       </div>
       <div class="core-sample tall" aria-hidden="true">
-        <div class="band" style="flex:0.7; background:#d8cba1;"><span>Surface</span></div>
-        <div class="band" style="flex:1; background:#d8cba1;"><span>Mixing zone</span></div>
-        <div class="band" style="flex:1.6; background:#d8cba1;"><span>Thermal core</span></div>
-        <div class="band" style="flex:1.3; background:#d8cba1;"><span>Microbial mat</span></div>
-        <div class="band" style="flex:0.9; background:#d8cba1;"><span>Vent</span></div>
+        <div class="band" style="flex:0.7;"></div>
+        <div class="band" style="flex:1;"></div>
+        <div class="band" style="flex:1.6;"></div>
+        <div class="band" style="flex:1.3;"></div>
+        <div class="band" style="flex:0.9;"></div>
       </div>
     </div>
   </div>
@@ -78,7 +79,7 @@
   <div class="container section alt">
     <div class="section-head">
       <p class="eyebrow">What we do</p>
-      <h2>Three verticals, one source environment</h2>
+      <h2>One source. Three ways we put it to work.</h2>
       <p class="lede">Each grows from the same proprietary microbial collection.</p>
     </div>
     <div class="card-row">
@@ -109,11 +110,11 @@
 </section>
 
 <!-- ============================ TECHNOLOGY ============================ -->
-<section id="tab-technology" class="tab-panel" role="tabpanel">
+<section id="technology" class="page-section" aria-label="Technology">
   <div class="container section">
     <div class="section-head">
       <p class="eyebrow">Research Focus</p>
-      <h2>Three verticals. One source environment.</h2>
+      <h2>One source. Three ways we put it to work.</h2>
       <p class="lede">
         ThermoGen has developed a proprietary platform built around naturally occurring
         extremophile bacteria native to acidic, mineral rich geothermal environments. We
@@ -193,7 +194,7 @@
 </section>
 
 <!-- =============================== ABOUT =============================== -->
-<section id="tab-about" class="tab-panel" role="tabpanel">
+<section id="about" class="page-section" aria-label="About">
   <div class="container section">
     <div class="section-head">
       <p class="eyebrow">Built for this frontier</p>
@@ -233,7 +234,7 @@
 </section>
 
 <!-- ============================ IP AND PATENTS ============================ -->
-<section id="tab-ip" class="tab-panel" role="tabpanel">
+<section id="ip" class="page-section" aria-label="IP and Patents">
   <div class="container section">
     <div class="section-head">
       <p class="eyebrow">Our IP Strategy</p>
@@ -253,7 +254,7 @@
 </section>
 
 <!-- =============================== CONTACT =============================== -->
-<section id="tab-contact" class="tab-panel" role="tabpanel">
+<section id="contact" class="page-section" aria-label="Contact">
   <div class="container section narrow">
     <div class="section-head">
       <p class="eyebrow">Get in Touch</p>
