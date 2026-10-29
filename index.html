@@ -1,298 +1,1574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-site="thermoden">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Keep the next line until you are ready to launch. Remove it to let search engines list the site. -->
 <meta name="robots" content="noindex, nofollow">
-<title>ThermoGen Biotech</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css">
+<title>ThermoDen: scientific consulting</title>
+<meta name="description" content="ThermoDen is a scientific consulting company helping research teams, institutions and early-stage companies plan, document and deliver good science in the Caribbean and beyond.">
+<!-- Security: only this page, the pinned database library (checked with an integrity hash) and your own Supabase project may load. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 34'%3E%3Crect x='3' y='1' width='22' height='6' rx='2' fill='%23d8cba1'/%3E%3Crect x='3' y='8' width='22' height='6' rx='2' fill='%23c2a836'/%3E%3Crect x='3' y='15' width='22' height='6' rx='2' fill='%239a4529'/%3E%3Crect x='3' y='22' width='22' height='6' rx='2' fill='%231d6b62'/%3E%3Crect x='3' y='29' width='22' height='4' rx='2' fill='%23123f3a'/%3E%3C/svg%3E">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" integrity="sha384-0w2KAL2YHP6wKOkUDzkCDGgVvfmHnj02DHeQ6XcHOgTfFsGyonKOpShMH1x6nk9o" crossorigin="anonymous"></script>
+<style>
+/* =====================================================================
+   Design system v2: bold sans type, vivid colour, waves, illustration.
+   Two palettes (spring / harbour), one structure.
+   ===================================================================== */
+:root{
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ink:#0d2327; --muted:#47615f; --line:#d4e2de; --card:#fff; --danger:#a1342b; --field:#6f8079;
+  --amber:#f5ae3c; --on-amber:#201603; --amber-d:#e39a22;
+  --radius:20px; --radius-sm:12px;
+  --shadow:0 10px 28px -14px rgba(7,47,52,.35); --shadow-lg:0 26px 60px -26px rgba(7,47,52,.55);
+  color-scheme:light;
+}
+html[data-site="thermogen"]{
+  --deep:#062e33; --deep-2:#0a4950; --on-deep:#cfe9e5; --aqua:#2bc4b4; --paper:#f3f8f6; --tint:#e0f1ed; --sand:#f5ebcf;
+  --link:#0b766d; --hot:#b5451d; --gold-ink:#74600f;
+  --s1:#ead9a6; --s2:#e2b92f; --s3:#d9572b; --s4:#1fa597; --s5:#0a4950; --card-tint:#f6fbf9;
+}
+html[data-site="thermoden"]{
+  --deep:#0e2850; --deep-2:#173e75; --on-deep:#d2e0f5; --aqua:#2ec0cf; --paper:#f3f6fb; --tint:#e1eaf7; --sand:#f6ecd4;
+  --link:#0a6a8c; --hot:#a8481a; --gold-ink:#74600f; --ink:#0f2038; --muted:#475b7a; --line:#d3deee; --field:#6e7f99;
+  --s1:#f0dfb0; --s2:#e8b53a; --s3:#e2734a; --s4:#22a9b6; --s5:#173e75; --card-tint:#f6f9fd;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font:400 1.0625rem/1.65 var(--sans);color:var(--ink);background:var(--paper);min-height:100vh;display:flex;flex-direction:column}
+main{flex:1}
+img,svg{max-width:100%}
+a{color:var(--link)}
+a:hover{color:var(--deep)}
+h1,h2,h3,h4{font-family:var(--sans);font-weight:800;line-height:1.08;margin:0;color:var(--deep);letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:clamp(2.35rem,5.6vw,4.1rem);letter-spacing:-.032em}
+h2{font-size:clamp(1.75rem,3.4vw,2.55rem)}
+h3{font-size:1.3rem;font-weight:750;letter-spacing:-.018em}
+h4{font-size:1.05rem;font-weight:750;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:66ch}
+ul,ol{margin:0 0 1em;padding-left:1.25rem}
+li{margin:.3em 0}
+small{font-size:.88em}
+:focus-visible{outline:3px solid var(--deep-2);outline-offset:3px;border-radius:6px}
+.site-header :focus-visible,.site-footer :focus-visible,.dark :focus-visible,.hero :focus-visible,.pagehead :focus-visible,.chat-panel header :focus-visible,.core-detail :focus-visible{outline-color:#fff}
+h1:focus,h1:focus-visible{outline:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:.75rem;top:-4rem;background:#fff;color:var(--deep);padding:.6rem .9rem;border-radius:10px;z-index:200;font-weight:700}
+.skip:focus{top:.75rem}
+[hidden]{display:none!important}
+.wrap{width:min(1160px,100% - 2.5rem);margin-inline:auto}
+.narrow{max-width:780px}
+.section{padding:clamp(2.8rem,6.5vw,5rem) 0}
+.section.tint{background:var(--tint)}
+.section.white{background:#fff}
+.section.dark{background:var(--deep);color:var(--on-deep)}
+.section.dark h2,.section.dark h3,.section.dark h4{color:#fff}
+.section.dark a{color:#fff}
+.lede{font-size:clamp(1.08rem,1.6vw,1.28rem);color:var(--muted);max-width:60ch;line-height:1.55}
+.dark .lede,.hero .lede,.pagehead .lede{color:var(--on-deep)}
+.head{margin-bottom:2.2rem}
+.head h2{margin-bottom:.8rem}
+.muted{color:var(--muted)}
+.note{font-size:.93rem;color:var(--muted)}
+
+/* ---------- Waves ---------- */
+.wave{display:block;line-height:0;background:var(--w-from,var(--deep));margin-top:-1px}
+.wave svg{display:block;width:100%;height:clamp(38px,6vw,86px)}
+.wave path{fill:var(--w-to,var(--paper))}
+.strata-wave{line-height:0}
+.strata-wave svg{display:block;width:100%;height:clamp(40px,6vw,78px)}
+
+/* ---------- Header ---------- */
+.site-header{background:var(--deep);position:sticky;top:0;z-index:50}
+.site-header .wrap{display:flex;align-items:center;gap:1rem;min-height:68px}
+.brand{display:flex;align-items:center;gap:.7rem;color:#fff;text-decoration:none;font:800 1.3rem/1 var(--sans);letter-spacing:-.03em;white-space:nowrap}
+.brand:hover{color:#fff}
+.brand svg{width:30px;height:36px;flex:none}
+.nav{margin-left:auto;display:flex;align-items:center;gap:.1rem}
+.nav a{color:var(--on-deep);text-decoration:none;font-weight:650;font-size:.92rem;padding:.5rem .65rem;border-radius:99px;white-space:nowrap}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.14)}
+.nav .ext{border:1.5px solid rgba(255,255,255,.35);margin-left:.25rem;padding:.42rem .8rem}
+.nav .ext:hover{border-color:#fff}
+.nav .cta{background:var(--amber);color:var(--on-amber);margin-left:.25rem;font-weight:800;padding:.52rem 1rem}
+.nav .cta:hover{background:#fff;color:var(--deep)}
+.nav-toggle{display:none;margin-left:auto;background:none;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:99px;padding:.5rem .9rem;font:700 .95rem var(--sans);cursor:pointer}
+@media(max-width:1140px){
+  .nav-toggle{display:inline-block}
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--deep);flex-direction:column;align-items:stretch;padding:.5rem 1.25rem 1.2rem;border-top:1px solid rgba(255,255,255,.15);box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+  .nav.open{display:flex}
+  .nav a{padding:.85rem .9rem}
+  .nav .ext,.nav .cta{margin:.35rem 0 0;text-align:center}
+}
+
+/* ---------- Buttons and forms ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font:800 1rem/1.2 var(--sans);text-align:center;padding:1rem 1.6rem;border-radius:99px;border:2px solid transparent;cursor:pointer;text-decoration:none;background:var(--deep);color:#fff;min-height:52px;transition:transform .15s,background .15s,box-shadow .15s;letter-spacing:-.005em}
+.btn:hover{background:var(--deep-2);color:#fff;transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(7,47,52,.6)}
+.btn.accent{background:var(--amber);color:var(--on-amber)}
+.btn.accent:hover{background:var(--amber-d);color:var(--on-amber)}
+.btn.ghost{background:transparent;color:var(--deep);border-color:var(--deep)}
+.btn.ghost:hover{background:var(--deep);color:#fff}
+.dark .btn.ghost,.hero .btn.ghost,.pagehead .btn.ghost{color:#fff;border-color:rgba(255,255,255,.7)}
+.dark .btn.ghost:hover,.hero .btn.ghost:hover,.pagehead .btn.ghost:hover{background:#fff;color:var(--deep)}
+.btn.small{min-height:42px;padding:.65rem 1.1rem;font-size:.92rem}
+.btn.danger{background:transparent;color:var(--danger);border-color:#e4bdb8}
+.btn.danger:hover{background:#fbeceb;color:var(--danger);box-shadow:none}
+.btn[disabled]{opacity:.6;cursor:progress;transform:none}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
+.f{display:grid;gap:1.1rem}
+.field label,.field .lbl{display:block;font-weight:700;font-size:.95rem;margin-bottom:.4rem}
+.field .hint{font-weight:400;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;font:400 1rem/1.4 var(--sans);padding:.85rem 1rem;border-radius:14px;border:1.5px solid var(--field);background:#fff;color:var(--ink);min-height:52px}
+.field textarea{min-height:140px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--link);outline:3px solid rgba(43,196,180,.35)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.row2{grid-template-columns:1fr}}
+.check{display:flex;gap:.65rem;align-items:flex-start;font-size:.95rem}
+.check input{width:1.2rem;height:1.2rem;margin-top:.15rem;accent-color:var(--link);flex:none}
+.err{color:var(--danger);font-weight:700;font-size:.93rem;min-height:1.2em;margin:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem 1.6rem;box-shadow:var(--shadow)}
+.callout{border-left:6px solid var(--amber);background:#fff;padding:1.1rem 1.4rem;border-radius:0 var(--radius-sm) var(--radius-sm) 0;box-shadow:var(--shadow)}
+.callout p:last-child{margin-bottom:0}
+
+/* ---------- Page heads (inner pages) ---------- */
+.pagehead{background:var(--deep);color:var(--on-deep);position:relative;overflow:hidden;padding:clamp(2.4rem,6vw,4rem) 0 clamp(1.4rem,3vw,2rem)}
+.pagehead h1{color:#fff;max-width:20ch}
+.pagehead .lede{margin-top:1.1rem}
+.pagehead .rings{position:absolute;right:-60px;top:-60px;width:420px;height:420px;opacity:.5;pointer-events:none}
+.pagehead .wrap{position:relative}
+
+/* ---------- Home heroes ---------- */
+.hero{background:var(--deep);color:var(--on-deep);padding:clamp(1.6rem,4vw,3rem) 0 clamp(2rem,5vw,3.2rem);position:relative;overflow:hidden}
+.hero .rings{position:absolute;right:-120px;top:-100px;width:640px;height:640px;opacity:.55;pointer-events:none}
+.hero h1{color:#fff;max-width:18ch;font-size:clamp(2.3rem,4.7vw,3.6rem)}
+.hero .lede{margin:1.2rem 0 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;position:relative}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr}}
+.hero.light{background:var(--deep)}
+.finder .btn.ghost{color:var(--deep);border-color:var(--deep)}
+.finder .btn.ghost:hover{background:var(--deep);color:#fff}
+.hero .wrap{z-index:1}
+
+/* ThermoGen: the cutaway (spring scene + clickable layers) */
+.cutaway{background:var(--deep-2);border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.14)}
+.scene{display:block;width:100%;height:auto}
+.steam path{animation:steam 7s ease-in-out infinite;transform-origin:center bottom}
+.steam path:nth-child(2){animation-delay:-2.4s}.steam path:nth-child(3){animation-delay:-4.6s}
+@keyframes steam{0%,100%{transform:translateY(6px);opacity:.28}50%{transform:translateY(-8px);opacity:.5}}
+.bubble-dot{animation:bub 4s ease-in-out infinite}
+.bubble-dot:nth-of-type(2n){animation-delay:-1.7s}
+@keyframes bub{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(-5px);opacity:1}}
+.corelog{display:grid;grid-template-columns:2.6rem 1fr;gap:.5rem;padding:.7rem .9rem 0}
+.ticks{display:flex;flex-direction:column;justify-content:space-between;font-size:.78rem;color:var(--on-deep);padding:.35rem 0;text-align:right;font-weight:650}
+.core{display:flex;flex-direction:column;gap:4px;height:290px}
+.layer{flex:1;border:0;border-radius:10px;cursor:pointer;text-align:left;padding:0 1.1rem;font:800 1rem/1.2 var(--sans);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:.5rem;transition:flex .35s ease,filter .2s,transform .2s;position:relative;overflow:hidden}
+.layer:hover{filter:brightness(1.1)}
+.layer[aria-pressed="true"]{flex:2.1;box-shadow:inset 0 0 0 3px #fff}
+.layer .tag{font-weight:650;font-size:.82rem;opacity:.95}
+.layer.l1{background:repeating-linear-gradient(90deg,#ead9a6 0 9px,#dcc98d 9px 11px);color:#2a2208}
+.layer.l2{background:repeating-linear-gradient(90deg,#c04317 0 14px,#ad3a12 14px 17px)}
+.layer.l3{background:repeating-linear-gradient(90deg,#7a6618 0 11px,#6b5814 11px 14px)}
+.layer.l4{background:repeating-linear-gradient(90deg,#0f766e 0 12px,#0c6962 12px 15px)}
+.layer.l5{background:repeating-linear-gradient(90deg,#0a2f34 0 16px,#082a2e 16px 19px)}
+.core-detail{grid-column:1 / -1;margin:.7rem -.9rem 0;background:rgba(0,0,0,.26);padding:1rem 1.2rem 1.1rem;color:#fff}
+.core-detail h3{color:#fff;font-size:1.12rem;margin-bottom:.3rem}
+.core-detail p{margin:0 0 .6rem;font-size:.97rem;color:var(--on-deep)}
+.core-detail a{color:#fff;font-weight:800}
+@media(prefers-reduced-motion:reduce){.layer{transition:none}.steam path,.bubble-dot{animation:none}}
+@media(max-width:600px){.core{height:270px}}
+
+/* ThermoDen: service finder */
+.finder{background:#fff;border-radius:26px;padding:1.5rem 1.6rem;color:var(--ink);box-shadow:var(--shadow-lg);position:relative}
+.finder h2{font-size:1.45rem;margin-bottom:1rem;color:var(--deep)}
+.chips{display:flex;flex-wrap:wrap;gap:.55rem}
+.chip{font:750 .93rem var(--sans);padding:.65rem 1rem;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;min-height:46px;transition:transform .12s,border-color .12s}
+.chip:hover{border-color:var(--link);transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.finder-result{margin-top:1.1rem;background:var(--tint);border-radius:18px;padding:1.1rem 1.2rem}
+.finder-result h3{margin-bottom:.35rem;font-size:1.15rem}
+.finder-result p{margin:0 0 .9rem;font-size:.98rem}
+
+/* ---------- Grids and cards ---------- */
+.grid{display:grid;gap:1.4rem}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:980px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-top:7px solid var(--aqua);border-radius:var(--radius);padding:1.5rem 1.5rem 1.6rem;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.card.c2{border-top-color:var(--amber)}.card.c3{border-top-color:var(--s3)}.card.c4{border-top-color:var(--deep-2)}
+.card h3,.card h4{margin-bottom:.55rem}
+.card p:last-child{margin-bottom:0}
+.tagline{display:inline-block;font-weight:750;font-size:.88rem;padding:.25rem .75rem;border-radius:99px;background:var(--tint);color:var(--deep);margin-bottom:.7rem}
+.stage{font-size:.9rem;color:var(--hot);font-weight:750}
+.pico{width:3.6rem;height:3.6rem;border-radius:50%;background:#0d7a6e;color:#fff;display:grid;place-items:center;margin-bottom:1rem;box-shadow:0 8px 18px -8px rgba(13,122,110,.8)}
+.pico svg{width:1.8rem;height:1.8rem}
+.card.c2 .pico{background:#b3610d}.card.c3 .pico{background:#9a3d17}
+.areas{font-size:.92rem;color:var(--muted);margin:-.2rem 0 .8rem;font-weight:600}
+.link-arrow{font-weight:800;text-decoration:none}
+.link-arrow::after{content:" \2192"}
+
+/* Fact tiles: three coloured panels */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+.fact{padding:1.8rem 1.7rem;border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.fact:nth-child(1){background:var(--deep-2);color:#fff}
+.fact:nth-child(2){background:var(--amber);color:var(--on-amber)}
+.fact:nth-child(3){background:var(--aqua);color:#042b2f}
+.fact b{display:block;font:800 clamp(2rem,3.4vw,2.7rem)/1.05 var(--sans);letter-spacing:-.03em;margin-bottom:.7rem;font-variant-numeric:tabular-nums}
+.fact p{margin:0;font-size:1rem;line-height:1.5}
+.fact small{display:block;margin-top:auto;padding-top:1rem;opacity:.9;font-size:.84rem;font-weight:600}
+.fact:nth-child(2) small,.fact:nth-child(3) small{opacity:.85}
+@media(max-width:860px){.facts{grid-template-columns:1fr}}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.2rem);align-items:start}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.list-plain{list-style:none;padding:0}
+.list-plain li{padding:.5rem 0;border-bottom:1px solid var(--line)}
+.list-plain li:last-child{border-bottom:0}
+.partner{display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start;background:#fff;border-radius:var(--radius);padding:1.2rem 1.3rem;box-shadow:var(--shadow);border:1px solid var(--line)}
+.partner .dot{width:3rem;height:3rem;border-radius:14px;display:grid;place-items:center;color:#fff;background:var(--deep-2)}
+.partner .dot svg{width:1.5rem;height:1.5rem}
+.partner:nth-child(2) .dot{background:#9a3d17}.partner:nth-child(3) .dot{background:#0d7a6e}
+.partner p{margin:0;font-size:.97rem}
+
+/* Services (ThermoDen) */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
+.service{display:grid;grid-template-columns:4rem 1fr;gap:1.1rem;padding:1.6rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:90px}
+.service.hl{outline:4px solid var(--amber);outline-offset:3px}
+.service .ico{width:4rem;height:4rem;border-radius:18px;background:var(--deep-2);color:#fff;display:grid;place-items:center}
+.service:nth-child(3n+2) .ico{background:#9a3d17}.service:nth-child(3n) .ico{background:#0d7a6e}
+.service .ico svg{width:2rem;height:2rem}
+.service h3{margin-bottom:.35rem}
+.service h4{font-size:.95rem;margin:1rem 0 .3rem;color:var(--hot)}
+.service ul{margin-bottom:.3rem}
+.service.big{grid-template-columns:1fr;padding:2rem 2.2rem;margin-bottom:1.6rem}
+.mini{display:grid;grid-template-columns:3rem 1fr;gap:.9rem;align-items:start;text-decoration:none;color:inherit;padding:1.1rem;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.mini:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.mini .ico{width:3rem;height:3rem;border-radius:14px;background:var(--deep-2);color:#fff;display:grid;place-items:center}
+.mini:nth-child(3n+2) .ico{background:#9a3d17}.mini:nth-child(3n) .ico{background:#0d7a6e}
+.mini .ico svg{width:1.5rem;height:1.5rem}
+.mini b{color:var(--deep);font-weight:800;line-height:1.2;display:block;margin-bottom:.2rem}
+.mini small{color:var(--muted)}
+
+/* Process steps (a real sequence) */
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.3rem;counter-reset:step}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.steps li{counter-increment:step;margin:0;padding:1.4rem 1.3rem 1.5rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative}
+.steps li::before{content:counter(step);display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--amber);color:var(--on-amber);font:800 1.15rem var(--sans);margin-bottom:.8rem}
+.steps h4{margin-bottom:.35rem}
+.steps p{margin:0;font-size:.96rem;color:var(--muted)}
+
+/* Roadmap (ThermoGen projections) */
+.road{list-style:none;padding:0;display:grid;margin:0}
+.road > li{display:grid;grid-template-columns:9.5rem 1fr;gap:1.4rem;margin:0;padding:0 0 1.8rem;position:relative;--c:var(--aqua)}
+.road > li:nth-child(2){--c:var(--amber)}.road > li:nth-child(3){--c:var(--s3)}.road > li:nth-child(4){--c:var(--deep-2)}
+.road > li::before{content:"";position:absolute;left:9.5rem;margin-left:.62rem;top:.5rem;bottom:-.5rem;width:4px;border-radius:4px;background:linear-gradient(var(--c),var(--c))}
+.road > li:last-child::before{display:none}
+.road .when{font:800 1.1rem var(--sans);color:var(--deep);text-align:right;padding-right:1.6rem;position:relative}
+.road .when::after{content:"";position:absolute;right:-.05rem;top:.2rem;width:20px;height:20px;border-radius:50%;background:var(--c);border:4px solid var(--paper);box-shadow:0 0 0 3px var(--c);transform:translateX(50%)}
+.road .when small{display:block;font:600 .85rem var(--sans);color:var(--muted)}
+.road .what{background:#fff;border:1px solid var(--line);border-top:6px solid var(--c);border-radius:var(--radius);padding:1.3rem 1.5rem;margin-left:1.2rem;box-shadow:var(--shadow)}
+.road .what h3{font-size:1.2rem;margin-bottom:.3rem}
+.road .what .need{font-weight:800;color:var(--hot);font-size:.95rem;margin-bottom:.5rem}
+.road .what ul{margin:.3rem 0 .6rem}
+.road .gate{font-size:.92rem;color:var(--muted);margin:0;padding-top:.6rem;border-top:1px dashed var(--line)}
+@media(max-width:700px){
+  .road > li{grid-template-columns:1fr;gap:.4rem;padding-left:2rem}
+  .road > li::before{left:.4rem;margin-left:0}
+  .road .when{text-align:left;padding-right:0}
+  .road .when::after{left:-2.1rem;right:auto;top:.15rem;transform:translateX(0)}
+  .road .what{margin-left:0}
+}
+
+/* Charts */
+.chart{margin:0 0 2rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem 1.5rem;box-shadow:var(--shadow)}
+.chart figcaption{font:800 1.1rem var(--sans);color:var(--deep);margin-bottom:.8rem;letter-spacing:-.015em}
+.chart svg{width:100%;height:auto;display:block}
+.chart .row-label{font:650 13px var(--sans);fill:var(--ink)}
+.chart .val{font:800 13px var(--sans);fill:var(--ink)}
+.chart .axis{stroke:var(--line)}
+.chart details{margin-top:.9rem;font-size:.92rem}
+.chart summary{cursor:pointer;font-weight:800;color:var(--link)}
+.chart table{border-collapse:collapse;width:100%;margin-top:.6rem}
+.chart th,.chart td{padding:.45rem .6rem;border-bottom:1px solid var(--line);text-align:left;font-size:.92rem}
+.chart .src{margin:.9rem 0 0;font-size:.85rem;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;margin:.2rem 0 .9rem;font-size:.9rem;font-weight:650}
+.legend span::before{content:"";display:inline-block;width:.85rem;height:.85rem;border-radius:5px;margin-right:.45rem;background:var(--c);vertical-align:-1px}
+
+/* Scenarios */
+.scen{border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.scen h3{padding:1rem 1.3rem;color:#fff;font-size:1.15rem}
+.scen.s-c h3{background:#0d7a6e}.scen.s-b h3{background:var(--deep-2)}.scen.s-u h3{background:#9a3d17}
+.scen ul{padding:1.1rem 1.3rem 1.1rem 2.5rem;margin:0}
+
+/* Founders */
+.founder{display:grid;grid-template-columns:minmax(0,14rem) 1fr;gap:clamp(1.5rem,4vw,3.2rem);padding:2.6rem 0;border-top:1px solid var(--line)}
+.founder:first-of-type{border-top:0;padding-top:0}
+@media(max-width:820px){.founder{grid-template-columns:1fr}}
+.avatar{width:100%;max-width:14rem;aspect-ratio:1/1;border-radius:28px;display:grid;place-items:center;color:#fff;font:800 4rem var(--sans);position:relative;box-shadow:var(--shadow-lg)}
+.avatar::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:28px;background:var(--amber);z-index:-1}
+.founder:nth-of-type(2) .avatar::before{background:var(--aqua)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:28px}
+.founder > div:first-child{isolation:isolate;padding:0 14px 14px 0}
+.avatar .band{display:none}
+.founder h3{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:.3rem}
+.role{display:inline-block;font-weight:800;color:var(--on-amber);background:var(--amber);padding:.3rem .9rem;border-radius:99px;margin-bottom:1rem;font-size:.95rem}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;margin:1.5rem 0}
+.fgroup{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem;box-shadow:var(--shadow)}
+.fgroup h4{color:var(--hot);margin-bottom:.5rem}
+.fgroup ul{list-style:none;padding:0;margin:0}
+.fgroup li{padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.97rem;margin:0}
+.fgroup li:last-child{border-bottom:0}
+.fgroup p{margin:0;font-size:.97rem}
+.pubs li{margin-bottom:.6rem}
+.pillrow{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0 0;padding:0;list-style:none}
+.pillrow li{margin:0;background:var(--tint);border-radius:99px;padding:.35rem .9rem;font-size:.92rem;font-weight:650;color:var(--deep)}
+
+/* Insights */
+.post{background:#fff;border:1px solid var(--line);border-top:7px solid var(--aqua);border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:.55rem;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+.post:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.post h3 a{color:var(--deep);text-decoration:none}
+.post h3 a:hover{text-decoration:underline}
+.post .meta{font-size:.9rem;color:var(--muted);font-weight:650}
+.article{max-width:700px}
+.article p{max-width:none;font-size:1.12rem;line-height:1.75}
+.article h3{margin:2rem 0 .6rem;font-size:1.5rem}
+.back{display:inline-block;margin-bottom:1rem;font-weight:800;text-decoration:none}
+.empty{text-align:center;padding:2.8rem 1rem;background:#fff;border:2px dashed var(--line);border-radius:var(--radius)}
+.empty h3{margin-bottom:.5rem}
+.empty p{margin-inline:auto}
+
+/* Footer */
+.site-footer{background:var(--deep);color:var(--on-deep);padding:0 0 1.6rem;margin-top:auto}
+.site-footer a{color:#fff}
+.foot-body{padding-top:2.2rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:2.2rem}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr}}
+.site-footer h4{color:#fff;font-size:1.05rem;margin-bottom:.7rem}
+.site-footer ul{list-style:none;padding:0;margin:0}
+.site-footer li{margin:.3rem 0}
+.site-footer p{font-size:.96rem;max-width:44ch}
+.legal{margin-top:1.8rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.2);font-size:.88rem;display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between}
+.foot-sub{display:flex;gap:.5rem;flex-wrap:wrap}
+.foot-sub input{flex:1 1 12rem;font:400 1rem var(--sans);padding:.75rem 1rem;border-radius:99px;border:0;min-height:50px}
+.foot-sub .btn{background:var(--amber);color:var(--on-amber)}
+.foot-sub .btn:hover{background:#fff}
+.foot-check{margin-top:.7rem;font-size:.88rem}
+.foot-check input{accent-color:var(--amber)}
+
+/* Demo / status banner */
+.demo-note{background:var(--amber);color:var(--on-amber);font-size:.9rem;font-weight:700;text-align:center;padding:.55rem 1rem}
+
+/* Chat */
+.chat-fab{position:fixed;right:1rem;bottom:1rem;z-index:90;display:inline-flex;align-items:center;gap:.55rem;background:var(--amber);color:var(--on-amber);border:0;border-radius:99px;padding:.95rem 1.3rem;font:800 1rem var(--sans);cursor:pointer;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);min-height:52px;transition:transform .15s}
+.chat-fab:hover{background:#fff;color:var(--deep);transform:translateY(-2px)}
+.chat-fab svg{width:20px;height:20px}
+.chat-panel{position:fixed;right:1rem;bottom:1rem;z-index:95;width:min(380px,100% - 2rem);max-height:min(600px,100vh - 2rem);display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 30px 70px -20px rgba(0,0,0,.55);overflow:hidden}
+.chat-panel header{display:flex;justify-content:space-between;align-items:center;background:var(--deep);color:#fff;padding:1rem 1.1rem}
+.chat-panel header strong{font:800 1.1rem var(--sans)}
+.chat-panel header small{display:block;color:var(--on-deep)}
+.x{background:none;border:0;color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;padding:.2rem .5rem;border-radius:99px}
+.x:hover{background:rgba(255,255,255,.15)}
+.chat-log{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem;background:var(--paper);min-height:120px}
+.bubble{max-width:88%;padding:.65rem .9rem;border-radius:18px;font-size:.95rem;overflow-wrap:anywhere;white-space:pre-wrap}
+.bubble.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px}
+.bubble.me{background:var(--deep-2);color:#fff;align-self:flex-end;border-bottom-right-radius:5px}
+.chat-form{display:grid;gap:.5rem;padding:.9rem 1rem 1rem;border-top:1px solid var(--line)}
+.chat-form textarea,.chat-form input{width:100%;font:400 .97rem var(--sans);padding:.7rem .85rem;border-radius:14px;border:1.5px solid var(--field)}
+.chat-form textarea{resize:none}
+.chat-form .note{margin:0}
+@media(max-width:520px){.chat-fab span{display:none}.chat-fab{padding:.95rem}}
+
+/* Toasts */
+#toasts{position:fixed;bottom:1rem;left:50%;translate:-50% 0;z-index:100;display:grid;gap:.5rem;width:min(460px,100% - 2rem)}
+.toast{background:var(--deep);color:#fff;padding:.9rem 1.2rem;border-radius:16px;font-weight:700;box-shadow:0 14px 34px -10px rgba(0,0,0,.5);border-left:6px solid var(--amber)}
+.toast.error{border-left-color:#ff8a80}.toast.ok{border-left-color:#7ddba4}
+
+/* Admin */
+.admin{padding:2rem 0 3rem}
+.admin h1{font-size:2.1rem;margin-bottom:.4rem}
+.login-card{max-width:440px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.pw{position:relative}
+.pw input{padding-right:4.6rem}
+.pwbtn{position:absolute;right:.4rem;top:50%;translate:0 -50%;background:none;border:0;font:800 .88rem var(--sans);color:var(--link);cursor:pointer;padding:.45rem .65rem;border-radius:99px}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.tab{font:750 .95rem var(--sans);padding:.65rem 1.1rem;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;min-height:46px}
+.tab[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+.tab .n{background:var(--amber);color:var(--on-amber);border-radius:99px;padding:0 .55rem;margin-left:.45rem;font-size:.82rem;font-weight:800}
+.afilters{display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
+.afilters select,.afilters input{font:600 .95rem var(--sans);padding:.65rem .9rem;border-radius:14px;border:1.5px solid var(--field);background:#fff;color:var(--ink);min-height:46px}
+.afilters input{flex:1;min-width:180px}
+.alist{display:grid;gap:.9rem}
+.arow{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:1.05rem 1.25rem;display:grid;gap:.6rem;box-shadow:var(--shadow)}
+.arow.new{border-left:6px solid var(--amber)}
+.arow-top{display:flex;gap:.5rem .8rem;align-items:center;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
+.arow-top strong{color:var(--ink);font-size:1.02rem}
+.pill{font-weight:750;font-size:.8rem;padding:.2rem .65rem;border-radius:99px;background:var(--tint);color:var(--deep)}
+.pill.s-New{background:#fde7c7;color:#6a3d00}.pill.s-Draft{background:#fff1cc;color:#6a4b00}.pill.s-Published{background:#d4efe0;color:#124d2e}
+.msg{white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.arow textarea{width:100%;min-height:70px;font:400 .95rem var(--sans);padding:.65rem .8rem;border-radius:12px;border:1.5px solid var(--field)}
+.arow-actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.arow-actions select{font:600 .93rem var(--sans);padding:.5rem .7rem;border-radius:12px;border:1.5px solid var(--field);min-height:42px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.9rem;margin:1rem 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+.stat b{display:block;font:800 2rem/1.1 var(--sans);color:var(--deep)}
+.stat span{color:var(--muted);font-size:.9rem}
+.bars{display:flex;align-items:flex-end;gap:2px;height:140px}
+.bars i{flex:1;background:var(--aqua);border-radius:4px 4px 0 0;min-height:2px}
+.rank{display:grid;gap:.5rem}
+.rank-row{display:grid;grid-template-columns:minmax(120px,1.2fr) 3fr auto;gap:.7rem;align-items:center;font-size:.92rem}
+.rank-bar{height:10px;border-radius:99px;background:#dfe9e6;overflow:hidden}
+.rank-bar i{display:block;height:100%;background:var(--link);border-radius:99px}
+.editor{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.4rem;margin:1rem 0;box-shadow:var(--shadow)}
+
+/* Legal */
+.legal-page h2{font-size:1.35rem;margin:1.9rem 0 .5rem}
+.legal-page p,.legal-page li{max-width:70ch}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.section.aw{padding-top:clamp(.8rem,2.5vw,1.6rem)}
+
+/* Region panel (ThermoDen): the island arc at a readable size */
+.regionband{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(1.2rem,3vw,2.5rem);align-items:center;background:var(--deep);color:var(--on-deep);border-radius:28px;padding:clamp(1.6rem,4vw,3rem);box-shadow:var(--shadow-lg);overflow:hidden}
+.regionband h2{color:#fff;margin-bottom:1rem}
+.regionband p{color:var(--on-deep)}
+.regionband .map{width:100%;height:auto;display:block}
+@media(max-width:820px){.regionband{grid-template-columns:1fr}}
+
+.plain-steps{padding-left:1.3rem;font-size:.97rem}
+.plain-steps li{margin:.5rem 0}
+code{font:600 .88em ui-monospace,Menlo,Consolas,monospace;background:var(--tint);padding:.1em .4em;border-radius:6px}
+
+/* Admin: prepare-a-document window */
+.modal{position:fixed;inset:0;z-index:130;background:rgba(6,30,34,.62);display:grid;place-items:center;padding:1rem}
+.modal[hidden]{display:none}
+.modal-box{background:#fff;border-radius:24px;width:min(1120px,100%);max-height:calc(100vh - 2rem);display:flex;flex-direction:column;box-shadow:0 40px 90px -30px rgba(0,0,0,.7);overflow:hidden}
+.modal-box > header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:1.2rem 1.5rem;border-bottom:1px solid var(--line)}
+.modal-box > header h2{font-size:1.4rem}
+.x.dark{color:var(--deep)}
+.x.dark:hover{background:var(--tint)}
+.modal-body{padding:1.2rem 1.5rem;overflow:auto;flex:1}
+.dm-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:1.4rem;margin-top:1rem}
+@media(max-width:860px){.dm-grid{grid-template-columns:1fr}}
+.dm-fields{display:grid;gap:.9rem;align-content:start}
+.dm-warn{border-radius:12px;padding:.7rem .9rem;font-size:.92rem;margin-bottom:.8rem}
+.dm-warn.bad{background:#fff1cc;color:#5a4100}
+.dm-warn.good{background:#d9f2e4;color:#124d2e}
+.docpaper{border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.6rem;max-height:56vh;overflow:auto;background:#fff;font:400 .97rem/1.55 Georgia,"Times New Roman",serif;color:#111}
+.docpaper h3{font:700 1rem Georgia,serif;margin:1.1rem 0 .3rem;color:#111;letter-spacing:0}
+.docpaper p{max-width:none;margin:0 0 .7rem}
+.docpaper li{margin:.3rem 0}
+.docmail{white-space:pre-wrap;font:inherit;margin:0}
+.dm-actions{display:flex;flex-wrap:wrap;gap:.6rem;padding:1rem 1.5rem;border-top:1px solid var(--line);background:var(--paper)}
+
+/* Printing a prepared document: show only the document */
+.docprint{display:none}
+@media print{
+  body.printing > *:not(#docPrint){display:none!important}
+  body.printing #docPrint{display:block!important;font:11pt/1.45 Georgia,"Times New Roman",serif;color:#000;padding:0}
+  #docPrint h3{font:700 12pt Georgia,serif;margin:14pt 0 4pt;color:#000}
+  #docPrint p{margin:0 0 8pt;max-width:none}
+  #docPrint li{margin:0 0 5pt}
+}
+
+/* ---------- Our network: the companies this site sponsors and advises ---------- */
+.netmenu{position:relative;margin-left:.25rem}
+.nav .netbtn{background:none;border:1.5px solid rgba(255,255,255,.35);color:var(--on-deep);font:650 .92rem var(--sans);padding:.42rem .8rem;border-radius:99px;cursor:pointer;white-space:nowrap}
+.nav .netbtn:hover,.nav .netbtn[aria-expanded="true"]{border-color:#fff;color:#fff;background:rgba(255,255,255,.1)}
+.nav .netlist{position:absolute;right:0;top:calc(100% + .7rem);z-index:60;width:min(21rem,88vw);background:var(--deep);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius-sm);padding:.9rem .6rem .6rem;box-shadow:var(--shadow-lg)}
+.nav .netlist[hidden]{display:none}
+.nav .netlist ul{list-style:none;margin:0 0 .4rem;padding:0}
+.nav .netlist ul+.netlead{margin-top:.75rem;padding-top:.75rem;border-top:1px solid rgba(255,255,255,.2)}
+.netlead{margin:.35rem .75rem .35rem;color:#fff;font-weight:750;font-size:.92rem;line-height:1.35}
+.nav .netlist a{display:block;white-space:normal;border-radius:10px;padding:.6rem .75rem;color:#fff}
+.nav .netlist a:hover{background:rgba(255,255,255,.12)}
+.netname{display:block;font-weight:750}
+.netsub{display:block;font-weight:500;font-size:.84rem;color:var(--on-deep)}
+.netgrid .card{display:flex;flex-direction:column}
+.netgrid .card .btn{margin-top:auto;align-self:flex-start}
+.netnote{margin:1.6rem 0 0;color:var(--muted);font-size:.95rem;max-width:62ch}
+.netlinks{list-style:none;padding:0;margin:0}
+.netlinks li{margin:0 0 1.1rem}
+.netlinks a{font-weight:750}
+@media(max-width:1140px){
+  .netmenu{margin:.35rem 0 0}
+  .nav .netbtn{width:100%;padding:.8rem .9rem;text-align:center}
+  .nav .netlist{position:static;width:auto;margin-top:.4rem;box-shadow:none}
+}
+
+</style>
 </head>
 <body>
+<a class="skip" href="#skip" data-skip>Skip to content</a>
+<div id="demoNote" class="demo-note" role="status" hidden></div>
+<header class="site-header" id="siteHeader"></header>
+<main id="app" tabindex="-1"></main>
+<footer class="site-footer" id="siteFooter"></footer>
 
-<nav class="site-nav" role="navigation" aria-label="Primary">
-  <a href="#home" class="brand" data-scroll="home">ThermoGen Biotech</a>
-  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-tabs" aria-label="Open menu">&#9776;</button>
-  <ul class="nav-tabs" id="nav-tabs" role="list">
-    <li><a href="#home" data-scroll="home" aria-current="true">Home</a></li>
-    <li><a href="#technology" data-scroll="technology">Technology</a></li>
-    <li><a href="#about" data-scroll="about">About</a></li>
-    <li><a href="#ip" data-scroll="ip">IP and Patents</a></li>
-    <li><a href="#contact" data-scroll="contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- ============================== HOME ============================== -->
-<section id="home" class="page-section" aria-label="Home">
-
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">Caribbean Extremophile Research</p>
-        <h1>Where the Earth's heat becomes tomorrow's medicine</h1>
-        <h2>ThermoGen Biotech</h2>
-        <p class="lead">
-          Caribbean hot springs host microbial communities that have evolved
-          under extreme heat, acidity, and sulfur pressure for thousands of
-          years, producing biology found nowhere else. These environments
-          remain almost entirely unstudied. ThermoGen is the first to
-          systematically access and translate this biology into commercial
-          products.
-        </p>
-        <a href="#contact" class="btn-primary" data-scroll="contact">Get in touch</a>
-      </div>
-      <div class="core-sample tall" aria-hidden="true">
-        <div class="band" style="flex:0.7;"></div>
-        <div class="band" style="flex:1;"></div>
-        <div class="band" style="flex:1.6;"></div>
-        <div class="band" style="flex:1.3;"></div>
-        <div class="band" style="flex:0.9;"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container section">
-    <div class="card-row">
-      <div class="card stat-card" style="border-top:4px solid #9a4529;">
-        <div class="stat-number" style="color:#9a4529;">$14B</div>
-        <p>Projected global plasmid DNA market by 2033</p>
-      </div>
-      <div class="card stat-card" style="border-top:4px solid #8f7a22;">
-        <div class="stat-number" style="color:#8f7a22;">~0</div>
-        <p>Prior systematic studies of Caribbean hot spring microbiomes</p>
-      </div>
-      <div class="card stat-card" style="border-top:4px solid #1d6b62;">
-        <div class="stat-number" style="color:#1d6b62;">1st</div>
-        <p>To access this biological territory commercially</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="core-divider" aria-hidden="true">
-    <span style="background:#d8cba1;"></span>
-    <span style="background:#c2a836;"></span>
-    <span style="background:#9a4529;"></span>
-    <span style="background:#1d6b62;"></span>
-    <span style="background:#123f3a;"></span>
-  </div>
-
-  <div class="container section alt">
-    <div class="section-head">
-      <p class="eyebrow">What we do</p>
-      <h2>One source. Three ways we put it to work.</h2>
-      <p class="lede">Each grows from the same proprietary microbial collection.</p>
-    </div>
-    <div class="card-row">
-
-      <div class="card" style="border-top:4px solid #9a4529;">
-        <div class="mini-core"><div style="background:#d8cba1;"></div><div style="background:#9a4529;"></div><div style="background:#1d6b62;"></div></div>
-        <h4>Novel Plasmid DNA</h4>
-        <p>Extremophile organisms carry plasmids encoding heat tolerance, acid resistance, and metal detoxification, traits absent in conventional lab strains. We are developing a proprietary catalogue for biopharma and gene therapy applications.</p>
-        <p class="tag" style="color:#9a4529;">Biopharma &middot; Gene Therapy</p>
-      </div>
-
-      <div class="card" style="border-top:4px solid #8f7a22;">
-        <div class="mini-core"><div style="background:#c2a836;"></div><div style="background:#9a4529;"></div><div style="background:#d8cba1;"></div></div>
-        <h4>Antibiotic Discovery</h4>
-        <p>Microbes competing in extreme environments produce antimicrobial compounds to survive. We screen novel isolates for activity against drug resistant pathogens on WHO priority lists.</p>
-        <p class="tag" style="color:#8f7a22;">AMR &middot; Drug Discovery</p>
-      </div>
-
-      <div class="card" style="border-top:4px solid #1d6b62;">
-        <div class="mini-core"><div style="background:#1d6b62;"></div><div style="background:#123f3a;"></div><div style="background:#c2a836;"></div></div>
-        <h4>Environmental Applications</h4>
-        <p>Microbial communities from sulfur rich, metal laden spring environments show capabilities relevant to bioremediation and sustainable industrial processes. Details available under NDA.</p>
-        <p class="tag" style="color:#1d6b62;">Bioremediation &middot; Industry</p>
-      </div>
-
-    </div>
-  </div>
+<!-- Ask a question (chat) -->
+<button class="chat-fab" id="chatFab" type="button" aria-expanded="false" aria-controls="chatPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Ask a question</span></button>
+<section class="chat-panel" id="chatPanel" role="dialog" aria-label="Ask a question" hidden>
+  <header><div><strong>Ask a question</strong><small>We read every message</small></div><button class="x" type="button" id="chatClose" aria-label="Close chat">&times;</button></header>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <form class="chat-form" id="chatForm" novalidate>
+    <label class="sr-only" for="ch-text">Your question</label>
+    <textarea id="ch-text" maxlength="1000" rows="3" placeholder="Type your question…" required></textarea>
+    <label class="sr-only" for="ch-email">Your email</label>
+    <input id="ch-email" type="email" maxlength="254" placeholder="Your email, so we can reply (optional)" autocomplete="email">
+    <input class="hp" id="ch-web" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="err" id="ch-err" role="alert"></p>
+    <button class="btn" type="submit" id="ch-send">Send</button>
+    <p class="note">Please don't share confidential information here.</p>
+  </form>
 </section>
+<div id="toasts" aria-live="polite"></div>
 
-<!-- ============================ TECHNOLOGY ============================ -->
-<section id="technology" class="page-section" aria-label="Technology">
-  <div class="container section">
-    <div class="section-head">
-      <p class="eyebrow">Research Focus</p>
-      <h2>One source. Three ways we put it to work.</h2>
-      <p class="lede">
-        ThermoGen has developed a proprietary platform built around naturally occurring
-        extremophile bacteria native to acidic, mineral rich geothermal environments. We
-        do not disclose specific organisms or methods publicly. Full technical detail is
-        shared only with partners under mutual NDA.
-      </p>
-    </div>
+<script>
+"use strict";
+/* =====================================================================
+   SETTINGS: edit these before you launch (this block is at the top of the script)
+   ===================================================================== */
+const CONFIG = {
+  SUPABASE_URL: "YOUR_SUPABASE_URL",            // Supabase dashboard > Project Settings > API > Project URL
+  SUPABASE_ANON_KEY: "YOUR_SUPABASE_ANON_KEY"   // the "anon public" key (never the service_role key)
+};
+const THERMODEN_URL = "https://www.thermoden.com";        // where the ThermoDen site will live (change to your real address)
+const THERMOGEN_URL = "https://thermogen.bio";             // where the ThermoGen site lives (change if the address differs)
+const LABNINJA_URL = "https://www.labninja.ai";                // companies that ThermoDen sponsors and advises: their websites
+const ISLECONNECT_URL = "https://isleconnect.co";
+const ISLERIDE_URL = "https://isleride.online";
+const ADMIN_PATH = "den-k7q2";                       // secret word for the admin sign-in page: yoursite/#/<this word>
+const SITE_OPERATOR = "[Legal name of the company]";       // shown on the Privacy and Terms pages
+const CONTACT_EMAIL = "[contact email address]";           // shown on the Privacy and Terms pages
+const LEGAL_UPDATED = "14 October 2026";
+const PATENT_FILED = false;   // set to true ONLY after a patent application has actually been filed. Until then the site must not say "patent pending".
+const PHOTO_DENVER = "team/denver.jpg";   // the photo file in the team folder next to index.html. Replace the file (keep the name) to change the picture.
+const PHOTO_JAMILLE = "team/jamille.jpg"; // set to "" to show initials instead
+const MIN_RATING_NOTE = "";   // (unused)
 
-    <div class="tech-item" style="border-left:4px solid #9a4529;">
-      <div class="mini-core"><div style="background:#d8cba1;"></div><div style="background:#9a4529;"></div><div style="background:#1d6b62;"></div></div>
-      <div class="tech-item-body">
-        <h4>Novel Plasmid DNA<span class="badge">NDA Required</span></h4>
-        <p>Extremophile organisms carry plasmids encoding heat tolerance, acid resistance, and metal detoxification, traits absent in conventional lab strains. We are developing a proprietary catalogue for biopharma and gene therapy applications.</p>
-      </div>
-    </div>
+/* Security & privacy switches */
+const BLOCK_FRAMING = true;   // never show this site inside another site's frame
 
-    <div class="tech-item" style="border-left:4px solid #8f7a22;">
-      <div class="mini-core"><div style="background:#c2a836;"></div><div style="background:#9a4529;"></div><div style="background:#d8cba1;"></div></div>
-      <div class="tech-item-body">
-        <h4>Antibiotic Discovery<span class="badge">NDA Required</span></h4>
-        <p>Microbes competing in extreme environments produce antimicrobial compounds to survive. We screen novel isolates for activity against drug resistant pathogens on WHO priority lists.</p>
-      </div>
-    </div>
+/* =====================================================================
+   ENGINE: shared by both sites. Security, data, routing, forms, chat, charts.
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
+const store = {
+  get(k, d){ try { const v = localStorage.getItem("th_" + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem("th_" + k, JSON.stringify(v)); } catch {} }
+};
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const isLimited = ex => /rate_limited/.test(String((ex && (ex.message || ex.hint)) || ""));
+const fmtDate = d => new Date(d).toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+const rtf = new Intl.RelativeTimeFormat(undefined, {numeric:"auto"});
+function ago(iso){
+  const s = (new Date(iso) - Date.now()) / 1000, a = Math.abs(s);
+  if (a < 60) return "just now";
+  if (a < 3600) return rtf.format(Math.round(s / 60), "minute");
+  if (a < 86400) return rtf.format(Math.round(s / 3600), "hour");
+  if (a < 2592000) return rtf.format(Math.round(s / 86400), "day");
+  return fmtDate(iso);
+}
+function toast(msg, type = ""){
+  const t = document.createElement("div"); t.className = "toast " + type; t.textContent = msg;
+  $("#toasts").appendChild(t); setTimeout(() => t.remove(), 5500);
+}
 
-    <div class="tech-item" style="border-left:4px solid #1d6b62;">
-      <div class="mini-core"><div style="background:#1d6b62;"></div><div style="background:#123f3a;"></div><div style="background:#c2a836;"></div></div>
-      <div class="tech-item-body">
-        <h4>Environmental Applications<span class="badge">NDA Required</span></h4>
-        <p>Microbial communities from sulfur rich, metal laden spring environments show capabilities relevant to bioremediation and sustainable industrial processes. Details available under NDA.</p>
-      </div>
-    </div>
-  </div>
+/* ---------- Security: frame guard, safe database connection, no cookies ---------- */
+try { if (BLOCK_FRAMING && window.top !== window.self) document.documentElement.style.display = "none"; }
+catch { document.documentElement.style.display = "none"; }
+const validUrl = u => { try { const x = new URL(u); return x.protocol === "https:" && !x.hostname.includes(".."); } catch { return false; } };
+let sb = null;
+try {
+  if (window.supabase && validUrl(CONFIG.SUPABASE_URL) && CONFIG.SUPABASE_ANON_KEY && !/^YOUR_/.test(CONFIG.SUPABASE_ANON_KEY)) {
+    sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+  }
+} catch (err) { console.error("Supabase setup failed:", err); sb = null; }
+const DEMO = !sb;
+const LIB_BLOCKED = !window.supabase && validUrl(CONFIG.SUPABASE_URL);
 
-  <div class="core-divider" aria-hidden="true">
-    <span style="background:#d8cba1;"></span>
-    <span style="background:#c2a836;"></span>
-    <span style="background:#9a4529;"></span>
-    <span style="background:#1d6b62;"></span>
-    <span style="background:#123f3a;"></span>
-  </div>
+/* ---------- Data layer (Supabase, with an in-memory demo fallback) ---------- */
+const daysAgo = d => new Date(Date.now() - d * 864e5).toISOString();
+const demoDb = {
+  inquiries: [
+    {id:"i1", site:"thermoden", source:"form", topic:"Book an introductory call", name:"Alex Morgan", email:"alex@example.org", organization:"Island University", role:"Dean of Sciences", message:"We would like to talk about a partnership.\nCould we set up a call next week?", consent:true, status:"New", admin_notes:"", created_at:daysAgo(0.4)},
+    {id:"i2", site:"thermoden", source:"chat", topic:"Chat question", name:null, email:"visitor@example.org", organization:null, role:null, message:"Do you work with small research teams?", consent:false, status:"In discussion", admin_notes:"Replied on Monday.", created_at:daysAgo(2)}
+  ],
+  insights: [
+    {id:"n1", site:"thermoden", title:"Welcome to our Insights", category:"Company news", summary:"What you will find here and how often we publish.", body:"This is a sample article that shows how Insights look.\n\n## What to expect\n\n- Plain-language explainers\n- Company news\n- Practical guidance\n\nYou write and publish articles from the admin screen.", status:"Published", published_at:daysAgo(5), created_at:daysAgo(5)},
+    {id:"n2", site:"thermoden", title:"A draft you have not published yet", category:"Company news", summary:"Only you can see drafts.", body:"Drafts stay private until you publish them.", status:"Draft", published_at:null, created_at:daysAgo(1)}
+  ],
+  subs: [{id:"s1", site:"thermoden", email:"reader@example.org", consent:true, created_at:daysAgo(3)}],
+  /* Generic samples only. Your real documents (such as the NDA) are kept in your private database, never in this page. */
+  templates: [
+    {id:"t1", site:"thermoden", key:"nda", title:"Sample agreement (demo only)", updated_at:daysAgo(2), body:"**SAMPLE AGREEMENT**\n\nThis sample shows how document templates work. Your real templates are stored privately in your database.\n\nBetween {{disclosing_party}} and {{recipient_party}}, of {{recipient_address}}, effective {{effective_date}}.\n\n# 1. Purpose\n\n{{purpose}}\n\n# 2. Term\n\nThis agreement lasts {{term}}.\n\n**Signed for the Receiving Party**\n\nName: {{recipient_signatory}}\n\nTitle: {{recipient_title}}"},
+    {id:"t2", site:"thermoden", key:"nda-email", title:"Sample cover email (demo only)", updated_at:daysAgo(2), body:"Subject: Your agreement for signature\n\nHello {{recipient_first_name}},\n\nPlease find the agreement attached. Sign it and send it back as a PDF.\n\nKind regards,\n{{sender_name}}\n{{sender_title}}"}
+  ]
+};
+const api = {
+  async insights(){
+    if (DEMO) return demoDb.insights.filter(i => i.status === "Published").sort((a, b) => b.published_at.localeCompare(a.published_at));
+    const {data, error} = await sb.from("insights").select("id,title,category,summary,published_at").eq("site", SITE.id).eq("status", "Published").order("published_at", {ascending:false}).limit(100);
+    if (error) throw error; return data;
+  },
+  async insight(id){
+    if (DEMO) return demoDb.insights.find(i => i.id === id && i.status === "Published") || null;
+    const {data, error} = await sb.from("insights").select("*").eq("site", SITE.id).eq("id", id).eq("status", "Published").maybeSingle();
+    if (error) throw error; return data;
+  },
+  async sendInquiry(row){
+    if (DEMO) { demoDb.inquiries.unshift({...row, id:"i" + Date.now(), status:"New", admin_notes:"", created_at:new Date().toISOString()}); return; }
+    const {error} = await sb.from("inquiries").insert(row); if (error) throw error;
+  },
+  async subscribe(row){
+    if (DEMO) { demoDb.subs.unshift({...row, id:"s" + Date.now(), created_at:new Date().toISOString()}); return; }
+    const {error} = await sb.from("subscribers").insert(row);
+    if (error && error.code !== "23505") throw error;               // already subscribed counts as success
+  },
+  async track(row){ if (DEMO) return; try { await sb.from("page_views").insert(row); } catch {} },
+  /* admin */
+  async session(){
+    if (DEMO) return state.demoAdmin ? {email:"demo@admin"} : null;
+    const {data:{session}} = await sb.auth.getSession(); if (!session) return null;
+    const {data} = await sb.from("admins").select("user_id").eq("user_id", session.user.id).maybeSingle();
+    return data ? session.user : null;
+  },
+  async signIn(email, password){
+    if (DEMO) { state.demoAdmin = true; return; }
+    const {error} = await sb.auth.signInWithPassword({email, password}); if (error) throw error;
+    if (!(await api.session())) { await sb.auth.signOut(); throw new Error("This account isn't an administrator."); }
+  },
+  async signOut(){ if (DEMO) state.demoAdmin = false; else await sb.auth.signOut(); },
+  async inquiries(){
+    if (DEMO) return [...demoDb.inquiries].sort((a, b) => b.created_at.localeCompare(a.created_at));
+    const {data, error} = await sb.from("inquiries").select("*").eq("site", SITE.id).order("created_at", {ascending:false}).limit(1000);
+    if (error) throw error; return data;
+  },
+  async newInquiryCount(){
+    if (DEMO) return demoDb.inquiries.filter(i => i.status === "New").length;
+    const {count, error} = await sb.from("inquiries").select("id", {count:"exact", head:true}).eq("site", SITE.id).eq("status", "New");
+    if (error) throw error; return count || 0;
+  },
+  async updateInquiry(id, patch){
+    if (DEMO) { Object.assign(demoDb.inquiries.find(i => i.id === id), patch); return; }
+    const {error} = await sb.from("inquiries").update(patch).eq("id", id); if (error) throw error;
+  },
+  async removeInquiry(id){
+    if (DEMO) { demoDb.inquiries = demoDb.inquiries.filter(i => i.id !== id); return; }
+    const {error} = await sb.from("inquiries").delete().eq("id", id); if (error) throw error;
+  },
+  async allInsights(){
+    if (DEMO) return [...demoDb.insights].sort((a, b) => b.created_at.localeCompare(a.created_at));
+    const {data, error} = await sb.from("insights").select("*").eq("site", SITE.id).order("created_at", {ascending:false}).limit(500);
+    if (error) throw error; return data;
+  },
+  async saveInsight(row){
+    if (DEMO) {
+      if (row.id) { Object.assign(demoDb.insights.find(i => i.id === row.id), row, {published_at: row.status === "Published" ? (demoDb.insights.find(i => i.id === row.id).published_at || new Date().toISOString()) : null}); return; }
+      demoDb.insights.unshift({...row, id:"n" + Date.now(), site:SITE.id, created_at:new Date().toISOString(), published_at: row.status === "Published" ? new Date().toISOString() : null}); return;
+    }
+    const {id, ...rest} = row;
+    const {error} = id ? await sb.from("insights").update(rest).eq("id", id) : await sb.from("insights").insert({...rest, site:SITE.id});
+    if (error) throw error;
+  },
+  async removeInsight(id){
+    if (DEMO) { demoDb.insights = demoDb.insights.filter(i => i.id !== id); return; }
+    const {error} = await sb.from("insights").delete().eq("id", id); if (error) throw error;
+  },
+  async subscribers(){
+    if (DEMO) return [...demoDb.subs].sort((a, b) => b.created_at.localeCompare(a.created_at));
+    const {data, error} = await sb.from("subscribers").select("*").eq("site", SITE.id).order("created_at", {ascending:false}).limit(2000);
+    if (error) throw error; return data;
+  },
+  async removeSub(id){
+    if (DEMO) { demoDb.subs = demoDb.subs.filter(s => s.id !== id); return; }
+    const {error} = await sb.from("subscribers").delete().eq("id", id); if (error) throw error;
+  },
+  async templates(){
+    if (DEMO) return [...demoDb.templates].sort((a, b) => a.title.localeCompare(b.title));
+    const {data, error} = await sb.from("doc_templates").select("*").eq("site", SITE.id).order("title");
+    if (error) throw error; return data;
+  },
+  async saveTemplate(row){
+    if (DEMO) {
+      if (row.id) { Object.assign(demoDb.templates.find(t => t.id === row.id), row, {updated_at:new Date().toISOString()}); return; }
+      demoDb.templates.push({...row, id:"t" + Date.now(), site:SITE.id, updated_at:new Date().toISOString()}); return;
+    }
+    const {id, ...rest} = row;
+    const {error} = id ? await sb.from("doc_templates").update(rest).eq("id", id) : await sb.from("doc_templates").insert({...rest, site:SITE.id});
+    if (error) throw error;
+  },
+  async removeTemplate(id){
+    if (DEMO) { demoDb.templates = demoDb.templates.filter(t => t.id !== id); return; }
+    const {error} = await sb.from("doc_templates").delete().eq("id", id); if (error) throw error;
+  },
+  async traffic(days){
+    if (DEMO) {
+      const by_day = []; for (let i = days - 1; i >= 0; i--) by_day.push({day:new Date(Date.now() - i * 864e5).toISOString().slice(0, 10), views:8 + ((i * 29) % 23)});
+      const total = by_day.reduce((a, b) => a + b.views, 0);
+      return {total_views:total, unique_visitors:Math.round(total * .55), subscribers:demoDb.subs.length, new_inquiries:demoDb.inquiries.filter(i => i.status === "New").length, by_day,
+        by_path:[{path:"/", views:Math.round(total * .4)}, {path:SITE.primaryPath, views:Math.round(total * .25)}, {path:"/founders", views:Math.round(total * .15)}, {path:"/contact", views:Math.round(total * .1)}],
+        by_referrer:[{ref:"Direct / unknown", views:Math.round(total * .55)}, {ref:"linkedin.com", views:Math.round(total * .3)}, {ref:"google.com", views:Math.round(total * .1)}]};
+    }
+    const {data, error} = await sb.rpc("traffic_summary", {p_site:SITE.id, p_days:days}); if (error) throw error; return data;
+  }
+};
 
-  <div class="container section alt">
-    <div class="section-head">
-      <p class="eyebrow">Development Pipeline</p>
-      <h2>From hot spring to shelf</h2>
-    </div>
-    <div class="pipeline-row">
-      <div class="pipeline-step">
-        <div class="step-number" style="background:#9a4529;">01</div>
-        <h4>Collection &amp; Characterisation</h4>
-        <p>In field sampling and 16S rRNA sequencing. Proprietary microbial database.</p>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-number" style="background:#8f7a22;">02</div>
-        <h4>Isolation &amp; Culture</h4>
-        <p>Pure culture isolation, strain profiling, and controlled storage.</p>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-number" style="background:#1d6b62;">03</div>
-        <h4>Product Development</h4>
-        <p>Extraction, purification, and lab validation of target compounds.</p>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-number" style="background:#17130f;">04</div>
-        <h4>Commercialisation</h4>
-        <p>Licensing, direct sale, and partner agreements with biotech and pharma.</p>
-      </div>
-    </div>
-    <p class="note">
-      We are not able to share process parameters, protocols, or claim
-      language publicly at this stage. If you are an investor, partner, or
-      collaborator and would like more detail, please reach out through the
-      Contact page, and we can discuss what can be shared under an
-      appropriate agreement.
-    </p>
-  </div>
-</section>
+/* ---------- State ---------- */
+const state = {isAdmin:false, demoAdmin:false, tab:"inbox", inq:[], inqFilter:{status:"New", source:"All", q:""}, ins:[], subs:[], subQ:"", days:30, newCount:0, editing:null};
+const app = () => $("#app");
 
-<!-- =============================== ABOUT =============================== -->
-<section id="about" class="page-section" aria-label="About">
-  <div class="container section">
-    <div class="section-head">
-      <p class="eyebrow">Built for this frontier</p>
-      <h2>The Team</h2>
-      <p class="lede">
-        ThermoGen was founded to systematically access and translate Caribbean hot spring
-        biology into commercial products, applying rigorous molecular biology to an
-        almost entirely unstudied environment.
-      </p>
-    </div>
+/* ---------- Cookie-free visit counts (respects Do Not Track and Global Privacy Control; never counts the admin) ---------- */
+const SESSION_ID = (() => { try { let v = sessionStorage.getItem("th_sid"); if (!v) { v = crypto.randomUUID(); sessionStorage.setItem("th_sid", v); } return v; } catch { return crypto.randomUUID(); } })();
+let lastTrack = "";
+let adminCheckDone; const adminCheck = new Promise(r => { adminCheckDone = r; });
+const isAdminBrowser = () => state.isAdmin === true || store.get("admin", false) === true;
+async function track(path){
+  try {
+    if (DEMO || navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true || isAdminBrowser()) return;
+    await Promise.race([adminCheck, new Promise(r => setTimeout(r, 4000))]);
+    if (isAdminBrowser() || !/^\/[a-z-]{0,30}$/.test(path)) return;
+    const key = path + "|" + Math.floor(Date.now() / 3000); if (key === lastTrack) return; lastTrack = key;
+    let ref = "";
+    if (!sessionStorage.getItem("th_ref")) {
+      sessionStorage.setItem("th_ref", "1");
+      try { if (document.referrer) { const h = new URL(document.referrer).hostname; if (h && h !== location.hostname) ref = h; } } catch {}
+    }
+    api.track({site:SITE.id, path, referrer:ref.slice(0, 200), session_id:SESSION_ID});
+  } catch {}
+}
 
-    <div class="card-row">
-      <div class="team-card" style="border-top:4px solid #9a4529;">
-        <div class="team-card-head">
-          <img src="team/denver.svg" alt="Portrait of Denver Jn. Baptiste" class="team-photo">
-          <div class="team-card-heading">
-            <h4>Denver Jn. Baptiste, PhD</h4>
-            <span class="tag" style="color:#9a4529;">Co-Founder &amp; CEO</span>
-          </div>
-        </div>
-        <p>Leads strategy, partnerships, and scientific direction. Background in molecular biology and environmental research, metagenomics, and bioinformatics.</p>
-        <p>Denver holds a PhD in Biology from Howard University and an MA in Molecular Biology from Princeton University. He currently serves as a Lecturer in the Chemistry and Chemical Biology Department at Stevens Institute of Technology, where he teaches and conducts research in cellular and molecular biology.</p>
-      </div>
+/* ---------- Small building blocks ---------- */
+const MARK = `<svg viewBox="0 0 28 34" aria-hidden="true"><rect x="2" y="1" width="24" height="6" rx="3" fill="#ead9a6"/><rect x="2" y="8" width="24" height="6" rx="3" fill="#f5ae3c"/><rect x="2" y="15" width="24" height="6" rx="3" fill="#e2673a"/><rect x="2" y="22" width="24" height="6" rx="3" fill="#2bc4b4"/><rect x="2" y="29" width="24" height="4" rx="2" fill="#8fd9cf"/></svg>`;
+const strata = (thin = false) => `<div class="strata ${thin ? "thin" : ""}" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>`;
+/* A soft wave between two sections: "from" is the colour above, "to" the colour below */
+const WAVE_PATH = "M0 48C160 96 320 8 560 40S960 96 1180 54C1290 33 1370 30 1440 46V90H0Z";
+const wave = (from, to) => `<div class="wave" style="--w-from:${from};--w-to:${to}" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="${WAVE_PATH}"/></svg></div>`;
+/* Layered sea waves for the ThermoDen hero */
+const seaWaves = () => `<div class="wave" style="--w-from:var(--deep)" aria-hidden="true"><svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path style="fill:var(--deep-2)" d="M0 70C200 20 420 110 700 60S1200 20 1440 70V130H0Z"/><path style="fill:var(--aqua);opacity:.55" d="M0 86C220 42 440 122 740 78S1220 46 1440 88V130H0Z"/><path style="fill:var(--paper)" d="M0 104C240 70 460 126 760 96S1240 70 1440 104V130H0Z"/></svg></div>`;
+/* The strata colours as layered waves (footer) */
+const strataWave = (id) => `<div class="strata-wave" ${id ? `id="${id}"` : ""} aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="var(--s1)" d="M0 18C200 48 400 0 700 22S1200 48 1440 12V80H0Z"/><path fill="var(--s2)" d="M0 28C220 58 420 8 720 32S1220 58 1440 22V80H0Z"/><path fill="var(--s3)" d="M0 38C230 66 430 18 730 42S1230 66 1440 32V80H0Z"/><path fill="var(--s4)" d="M0 48C240 74 440 28 740 52S1240 74 1440 42V80H0Z"/><path fill="var(--deep)" d="M0 58C250 80 450 40 750 62S1250 80 1440 52V80H0Z"/></svg></div>`;
+const RINGS = `<svg class="rings" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2"><circle cx="200" cy="200" r="50"/><circle cx="200" cy="200" r="95"/><circle cx="200" cy="200" r="140"/><circle cx="200" cy="200" r="185"/></g><circle cx="200" cy="200" r="9" fill="#f5ae3c"/></svg>`;
+const ICONS = {
+  research:"M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z M15.5 15.5L21 21 M8 11h5 M10.5 8.5v5",
+  lab:"M9 3h6 M10 3v6L5 18a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3 M8 15h8",
+  grant:"M7 3h7l4 4v14H7z M14 3v4h4 M10 12h6 M10 16h6",
+  teach:"M2 9l10-5 10 5-10 5z M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5",
+  environment:"M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z M9.5 15a2.5 2.5 0 0 0 2.5 2.5",
+  operations:"M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z M12 2v3 M12 19v3 M2 12h3 M19 12h3 M5 5l2 2 M17 17l2 2 M19 5l-2 2 M7 17l-2 2",
+  ip:"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M8.5 12l2.5 2.5 4.5-5",
+  partners:"M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c3.5 3 3.5 15 0 18 M12 3c-3.5 3-3.5 15 0 18",
+  chat:"M4 5h16v11H9l-5 4z"
+};
+const icon = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[k] || ICONS.research}"/></svg>`;
 
-      <div class="team-card" style="border-top:4px solid #1d6b62;">
-        <div class="team-card-head">
-          <img src="team/jamille.svg" alt="Portrait of Jamille Jn. Baptiste" class="team-photo">
-          <div class="team-card-heading">
-            <h4>Jamille Jn. Baptiste, PA-C, MS</h4>
-            <span class="tag" style="color:#1d6b62;">Co-Founder &amp; COO</span>
-          </div>
-        </div>
-        <p>Oversees operations, regulatory affairs, and field research logistics. Experience in biochemistry and health care, and project management.</p>
-      </div>
-    </div>
-  </div>
-</section>
+/* Horizontal bar chart with a text-table fallback. rows: [{label, bars:[{v, note}]}], legend: [[name, colour]] */
+function chart({title, unit, legend, rows, src, fmt}){
+  const W = 640, left = 190, right = 190, bh = 20, gap = 6, rowPad = 14;
+  const max = Math.max(...rows.flatMap(r => r.bars.map(b => b.v)));
+  let y = 8, svg = "";
+  rows.forEach(r => {
+    const h = r.bars.length * (bh + gap);
+    svg += `<text class="row-label" x="0" y="${y + h / 2 + 2}">${esc(r.label)}</text>`;
+    r.bars.forEach((b, i) => {
+      const w = Math.max(2, (b.v / max) * (W - left - right)), yy = y + i * (bh + gap);
+      svg += `<rect x="${left}" y="${yy}" width="${w.toFixed(1)}" height="${bh}" rx="3" fill="${legend[i][1]}"/><text class="val" x="${(left + w + 8).toFixed(1)}" y="${yy + bh - 5}">${esc((fmt || (v => v))(b.v))}${b.note ? " (" + esc(b.note) + ")" : ""}</text>`;
+    });
+    y += h + rowPad;
+  });
+  const H = y;
+  const table = `<table><caption class="sr-only">${esc(title)}</caption><thead><tr><th>Source</th>${legend.map(l => `<th>${esc(l[0])}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr><td>${esc(r.label)}</td>${r.bars.map(b => `<td>${esc((fmt || (v => v))(b.v))}${b.note ? " (" + esc(b.note) + ")" : ""}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  return `<figure class="chart"><figcaption>${esc(title)}</figcaption>
+    <div class="legend">${legend.map(l => `<span style="--c:${l[1]}">${esc(l[0])}</span>`).join("")}</div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)}. Open the data table below for the exact values."><line class="axis" x1="${left}" y1="0" x2="${left}" y2="${H}"/>${svg}</svg>
+    <details><summary>View the data table</summary>${table}</details>
+    <p class="src">${src}</p></figure>`;
+}
 
-<!-- ============================ IP AND PATENTS ============================ -->
-<section id="ip" class="page-section" aria-label="IP and Patents">
-  <div class="container section">
-    <div class="section-head">
-      <p class="eyebrow">Our IP Strategy</p>
-      <h2>Intellectual Property</h2>
-    </div>
+/* ---------- Header, footer, navigation ---------- */
+function renderChrome(){
+  document.documentElement.dataset.site = SITE.id;
+  $("#siteHeader").innerHTML = `<div class="wrap"><a class="brand" href="#/" aria-label="${esc(SITE.name)} home">${MARK}${esc(SITE.short)}</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">${SITE.nav.map(([p, l]) => `<a href="#${p}" data-path="${p}">${esc(l)}</a>`).join("")}${SITE.network ? netMenu() : `<a class="ext" href="${esc(SITE.other.url)}" target="_blank" rel="noopener noreferrer">${esc(SITE.other.name)} <span class="sr-only">(opens in a new tab)</span>&#8599;</a>`}<a class="cta" href="#${SITE.navCta.to}">${esc(SITE.navCta.label)}</a></nav></div>`;
+  $("#siteFooter").innerHTML = `${strataWave("footWave")}<div class="wrap foot-body"><div class="foot-grid">
+    <div><a class="brand" href="#/">${MARK}${esc(SITE.name)}</a><p style="margin-top:.9rem">${esc(SITE.footBlurb)}</p>
+      <p>${esc(SITE.other.line)} <a href="${esc(SITE.other.url)}" target="_blank" rel="noopener noreferrer">${esc(SITE.other.name)}</a>.</p>${netFoot()}</div>
+    <div><h4>Explore</h4><ul>${SITE.nav.map(([p, l]) => `<li><a href="#${p}">${esc(l)}</a></li>`).join("")}</ul></div>
+    <div><h4>Get updates</h4><form class="subscribe-form" novalidate><label class="sr-only" for="fs-email">Email address</label>
+      <div class="foot-sub"><input id="fs-email" type="email" autocomplete="email" maxlength="254" placeholder="Your email address" required><button class="btn" type="submit">Subscribe</button></div>
+      <label class="check foot-check"><input type="checkbox" class="fs-consent"><span>I agree to receive updates by email. <a href="#/privacy">Privacy</a></span></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><p class="err sub-err" role="alert" style="color:#ffb4ab"></p></form></div></div>
+    <div class="legal"><span>&copy; ${new Date().getFullYear()} ${esc(SITE.name)}. All rights reserved.${PATENT_FILED ? " Patent pending." : ""}</span><span><a href="#/privacy">Privacy</a> &nbsp;|&nbsp; <a href="#/terms">Terms</a></span></div></div>`;
+}
+/* The wave above the footer takes the colour of whatever section the page ends with */
+function syncFooterWave(){
+  const w = $("#footWave"), last = $("#app")?.lastElementChild; if (!w) return;
+  let bg = "var(--paper)";
+  try { const c = last && getComputedStyle(last).backgroundColor; if (c && c !== "transparent" && c !== "rgba(0, 0, 0, 0)") bg = c; } catch {}
+  w.style.background = bg;
+}
+function updateNav(path){
+  $$("#nav a[data-path]").forEach(a => { if (a.dataset.path === path || (path.startsWith("/insights") && a.dataset.path === "/insights")) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+}
+function closeNav(){ $("#nav")?.classList.remove("open"); $("#navToggle")?.setAttribute("aria-expanded", "false"); setNet(false); }
+/* "Our network": the companies this site sponsors and advises (only a site that defines SITE.network shows it) */
+function netMenu(){
+  const n = SITE.network; if (!n) return "";
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
+  const link = (name, url, sub) => `<li><a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><span class="netname">${esc(name)} <span class="sr-only">(opens in a new tab)</span>&#8599;</span><span class="netsub">${esc(sub)}</span></a></li>`;
+  return `<div class="netmenu"><button class="netbtn" id="netBtn" type="button" aria-expanded="false" aria-controls="netList">${esc(n.menuLabel)} <span aria-hidden="true">&#9662;</span></button>
+    <div class="netlist" id="netList" hidden>
+      <p class="netlead" id="netLead1">${esc(n.daughterLead)}</p><ul aria-labelledby="netLead1">${link(SITE.other.name, SITE.other.url, host(SITE.other.url))}</ul>
+      <p class="netlead" id="netLead2">${esc(n.lead)}</p><ul aria-labelledby="netLead2">${n.items.map(c => link(c.name, c.url, c.domain)).join("")}</ul></div></div>`;
+}
+function netFoot(){
+  const n = SITE.network; if (!n) return "";
+  const links = n.items.map(c => `<a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.name)}<span class="sr-only"> (opens in a new tab)</span></a>`);
+  return `<p>${esc(n.footLine)} ${links.slice(0, -1).join(", ")} and ${links[links.length - 1]}.</p>`;
+}
+function setNet(open){ const l = $("#netList"), b = $("#netBtn"); if (!l || !b) return; l.hidden = !open; b.setAttribute("aria-expanded", String(open)); }
 
-    <div class="ip-block" style="border-left:4px solid #9a4529;">
-      <p>Patent applications in progress covering novel processes and applications. Specific methods are not publicly disclosed prior to filing.</p>
-    </div>
-    <div class="ip-block" style="border-left:4px solid #8f7a22;">
-      <p>Proprietary microbial database. All strains, sequences, and characterisation data remain confidential and are not shared without an NDA.</p>
-    </div>
-    <div class="ip-block" style="border-left:4px solid #1d6b62;">
-      <p>Partners receive full technical detail, organisms, methods, and data, under a signed mutual NDA prior to any substantive discussion.</p>
-    </div>
-  </div>
-</section>
+/* ---------- Router ---------- */
+function parseHash(){
+  const h = location.hash.slice(1) || "/", [path, q] = h.split("?");
+  return {path: path.startsWith("/") ? path : "/" + path, query: Object.fromEntries(new URLSearchParams(q || ""))};
+}
+function setView(html, title, mount, opts = {}){
+  app().innerHTML = html;
+  document.title = title ? `${title} – ${SITE.name}` : `${SITE.name}: ${SITE.tagline}`;
+  if (!opts.keepScroll) window.scrollTo(0, 0);
+  const h = $("h1", app()); if (h) { h.tabIndex = -1; h.focus({preventScroll:true}); }
+  if (mount) mount();
+  syncFooterWave();
+}
+function route(){
+  const {path, query} = parseHash(); closeNav(); updateNav(path);
+  if (path === "/" + ADMIN_PATH) return showAdmin();
+  if (path.startsWith("/insights/")) { track("/insights"); return showInsight(path.slice(10)); }
+  const page = SITE.pages[path];
+  if (!page) { location.hash = "#/"; return; }
+  const out = page({query});
+  setView(out.html, out.title, out.mount, {keepScroll:!!query.s});
+  track(path);
+}
+window.addEventListener("hashchange", route);
 
-<!-- =============================== CONTACT =============================== -->
-<section id="contact" class="page-section" aria-label="Contact">
-  <div class="container section narrow">
-    <div class="section-head">
-      <p class="eyebrow">Get in Touch</p>
-      <h2>Ready to explore what's possible?</h2>
-      <p class="lede">
-        We welcome conversations with research partners, impact investors, pharma and
-        biotech firms, and Caribbean institutions. All technical details are shared
-        under mutual NDA.
-      </p>
-    </div>
+/* =====================================================================
+   SHARED VIEWS: founders, contact, insights, privacy, terms, forms, chat
+   ===================================================================== */
+const DENVER_LINKEDIN = "https://www.linkedin.com/in/denver-jnbaptiste-714b15268";
+const FOUNDERS = [
+  { key:"denver", name:"Denver Jn. Baptiste, PhD", role:"Co-Founder & CEO", initials:"DB", photo:PHOTO_DENVER,
+    intro:[
+      "Denver leads strategy, partnerships and scientific direction. He is a molecular biologist with a PhD in Biology, more than ten years of experience in university teaching, lab management and mentoring, and hands-on forensic laboratory experience where careful records and chain of custody are part of daily work.",
+      "He teaches Biology and Biotechnology at Stevens Institute of Technology, where he was named Faculty of the Year in 2025. His research training spans genetics, cell and developmental biology, and metagenomics, and he is interested in how CRISPR, artificial intelligence and virtual reality can improve scientific practice and education."
+    ],
+    focus:["Molecular biology and genetics","Metagenomics","Forensic lab practice and documentation","CRISPR, AI and VR in science education","Mentoring and academic advising"],
+    facts:[
+      ["Education", ["PhD, Biology, Howard University (2019)","MA, Molecular Biology, Princeton University (2012)","MDiv, Andrews University (2015)","BS, Biology with a Mathematics concentration, CUNY Medgar Evers College, summa cum laude (2010)","A Levels in Mathematics, Biology and Economics, Sir Arthur Lewis Community College, Saint Lucia (2004)"]],
+      ["Experience", ["Lecturer, Chemistry and Chemical Biology, Stevens Institute of Technology (2022 to present)","Assistant Professor, Biology, Saint Peter's University (2020 to 2022)","Forensic toxicology extraction technologist and clinical laboratory technologist, Laboratory Corporation of America (2021 to 2022): chemical and chromatographic extraction, chain-of-custody and laboratory records","INSPIRE Postdoctoral Fellow, Rutgers Robert Wood Johnson Medical School (2019 to 2020): embryonic development and actin regulation in C. elegans","Teaching Assistant, Howard University (2015 to 2019)","Graduate Research Assistant, Princeton University (2010 to 2012)","High school mathematics instructor, Dennery, Saint Lucia (2004 to 2005)"]],
+      ["Honours", ["Faculty of the Year, Stevens Institute of Technology (2025)","Keynote speaker, Tri Beta Biological Honor Society (2021)","Just Julian Graduate Research Grant, Howard University (2019)","Preparing Future Faculty Scholar, Howard University (2018)","AGEP Fellowship (2016) and American Society of Plant Biologists travel grants (2016, 2018)","Summa cum laude and Student Role Model Award, CUNY Medgar Evers College (2010)"]],
+      ["Languages", ["Spoken French Creole (expert), spoken French (proficient), written Spanish (competent)"]]
+    ],
+    pubs:[
+      "Jn. Baptiste D, Ullah H. miR393s regulate salt stress response pathway in Arabidopsis thaliana through scaffold protein RACK1A mediated ABA signaling pathways. Plant Signaling and Behavior, 2019.",
+      "Qasim M, Jn. Baptiste D, Ullah H. Optogenetics: a cellular photoactivation method and its applications in biomedical sciences. International Journal of Bioinformatics and Biomedical Engineering, 2017.",
+      "Honciuc A, Jn. Baptiste D, Campbell IP, Schwartz DK. Solvent dependence of the activation energy of attachment determined by single molecule observations of surfactant adsorption. Langmuir, 2009.",
+      "Honciuc A, Jn. Baptiste D, Schwartz DK. Hydrophobic interaction microscopy: mapping the solid/liquid interface using amphiphilic probe molecules. Langmuir, 2009."
+    ],
+    links:[["Denver on LinkedIn", DENVER_LINKEDIN]] },
+  { key:"jamille", name:"Jamille Jn. Baptiste, PA-C, MS", role:"Co-Founder & COO", initials:"JB", photo:PHOTO_JAMILLE,
+    intro:[
+      "Jamille oversees operations, regulatory affairs and field research logistics. She is a physician assistant (PA-C) with a master's degree and experience in biochemistry, health care and project management.",
+      "She brings a clinical and practical perspective to the work: making sure projects are planned, compliant and deliverable, from the first permit to the last report."
+    ],
+    focus:["Operations and project management","Regulatory affairs","Field research logistics","Biochemistry","Health care"],
+    facts:[["Credentials", ["PA-C, Physician Assistant","MS"]]], pubs:[], links:[] }
+];
+function founderHtml(f, i){
+  const colors = ["#0a4950","#173e75"], c = colors[i % 2];
+  const okPhoto = /^[\w\/.-]+\.(jpe?g|png|webp|gif)$/i.test(f.photo || "") && !/\.\./.test(f.photo);
+  const photo = okPhoto ? `<img src="${esc(f.photo)}" alt="Portrait of ${esc(f.name)}">` : esc(f.initials);
+  return `<article class="founder" aria-labelledby="f-${f.key}">
+    <div><div class="avatar" style="background:var(--deep-2)" role="img" aria-label="${esc(okPhoto ? "Portrait of " + f.name : "Initials " + f.initials)}">${photo}</div></div>
+    <div><h3 id="f-${f.key}">${esc(f.name)}</h3><p class="role">${esc(f.role)}</p>
+      ${f.intro.map(p => `<p>${esc(p)}</p>`).join("")}
+      <ul class="pillrow" aria-label="Areas of focus">${f.focus.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <div class="fgrid">${f.facts.map(([k, list]) => `<div class="fgroup"><h4>${esc(k)}</h4>${list.length > 1 ? `<ul>${list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${esc(list[0])}</p>`}</div>`).join("")}</div>
+      ${f.pubs.length ? `<h4>Selected publications</h4><ol class="pubs">${f.pubs.map(p => `<li>${esc(p)}</li>`).join("")}</ol>` : ""}
+      ${f.links.map(([l, u]) => `<p><a class="btn ghost small" href="${esc(safeUrl(u))}" target="_blank" rel="noopener noreferrer">${esc(l)} <span class="sr-only">(opens in a new tab)</span>&#8599;</a></p>`).join("")}</div></article>`;
+}
+function foundersPage(){
+  return {title:"Founders", html:`${pageHead("The founders", SITE.foundersLede)}<section class="section"><div class="wrap">${FOUNDERS.map(founderHtml).join("")}
+    <div class="callout" style="margin-top:2rem"><p><strong>Working together.</strong> ${esc(SITE.foundersTogether)}</p><p><a class="btn" href="#/contact">Get in touch</a></p></div></div></section>`};
+}
+function pageHead(title, lede, to = "var(--paper)"){
+  return `<header class="pagehead">${RINGS}<div class="wrap"><h1>${esc(title)}</h1>${lede ? `<p class="lede">${esc(lede)}</p>` : ""}</div></header>${wave("var(--deep)", to)}`;
+}
 
-    <div class="contact-lines">
-      <p><strong>Partnerships: </strong><a href="mailto:partnerships@thermogenbiotech.com">partnerships@thermogenbiotech.com</a></p>
-      <p><strong>General Contact: </strong><a href="mailto:jsurvey758@gmail.com">jsurvey758@gmail.com</a></p>
-    </div>
+/* ---------- Contact ---------- */
+function contactPage({query}){
+  const want = query.topic && SITE.contactTopics.find(t => t.id === query.topic) ? query.topic : SITE.contactTopics[0].id;
+  return {title:"Contact", html:`${pageHead(SITE.contactTitle, SITE.contactLede)}<section class="section"><div class="wrap split">
+    <div class="panel"><form class="f" id="contactForm" novalidate>
+      <div class="field"><label for="c-topic">What is this about?</label><select id="c-topic">${SITE.contactTopics.map(t => `<option value="${esc(t.id)}" ${t.id === want ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></div>
+      <div class="row2"><div class="field"><label for="c-name">Your name</label><input id="c-name" maxlength="120" autocomplete="name" required></div>
+        <div class="field"><label for="c-email">Email address</label><input id="c-email" type="email" maxlength="254" autocomplete="email" required></div></div>
+      <div class="row2"><div class="field"><label for="c-org">Organisation <span class="hint" id="c-org-hint">(optional)</span></label><input id="c-org" maxlength="160" autocomplete="organization"></div>
+        <div class="field"><label for="c-role">Your role <span class="hint">(optional)</span></label><input id="c-role" maxlength="120" autocomplete="organization-title"></div></div>
+      <div id="c-nda" hidden><div class="row2"><div class="field"><label for="c-addr">Organisation address <span class="hint">(for the agreement, optional)</span></label><input id="c-addr" maxlength="300" autocomplete="street-address"></div>
+        <div class="field"><label for="c-sign">Authorised signatory <span class="hint">(name, if not you)</span></label><input id="c-sign" maxlength="160"></div></div>
+        <p class="note" style="margin-top:-.4rem">We use these only to prepare the agreement. Your role above is used as the signatory's title.</p></div>
+      <div class="field"><label for="c-msg">How can we help?</label><textarea id="c-msg" maxlength="3000" required></textarea></div>
+      <label class="check"><input type="checkbox" id="c-consent"><span>I agree that ${esc(SITE.short)} may contact me by email about this message. <a href="#/privacy">Privacy notice</a></span></label>
+      <input class="hp" id="c-web" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err" id="c-err" role="alert"></p>
+      <div><button class="btn accent" type="submit" id="c-send">Send message</button></div></form></div>
+    <aside class="panel" aria-label="Before you write"><h2 style="font-size:1.3rem;margin-bottom:.6rem">Before you write</h2>
+      <ul>${SITE.contactNotes.map(n => `<li>${n}</li>`).join("")}</ul>${SITE.contactAside || ""}
+      <p class="note">Please do not include confidential or proprietary information in this form. We will agree a non-disclosure agreement first when one is needed.</p></aside></div></section>`,
+    mount(){ syncContactTopic(); $("#c-topic").addEventListener("change", syncContactTopic); }};
+}
+function syncContactTopic(){
+  const t = SITE.contactTopics.find(x => x.id === $("#c-topic")?.value), hint = $("#c-org-hint");
+  if (hint) hint.textContent = t && t.org ? "(required for this request)" : "(optional)";
+  const n = $("#c-nda"); if (n) n.hidden = !(t && t.nda);
+}
 
-    <h3>Or send a message directly</h3>
-    <form id="contact-form" novalidate>
-      <label for="contact_name">Name</label>
-      <input type="text" id="contact_name" name="from_name" required>
+/* ---------- Insights ---------- */
+function renderBody(body){
+  const blocks = String(body).replace(/\r/g, "").split(/\n{2,}/), out = [];
+  blocks.forEach(b => {
+    const lines = b.split("\n");
+    if (/^## /.test(b)) { out.push(`<h3>${esc(b.replace(/^## /, "").trim())}</h3>`); return; }
+    if (lines.every(l => /^- /.test(l))) { out.push(`<ul>${lines.map(l => `<li>${esc(l.replace(/^- /, ""))}</li>`).join("")}</ul>`); return; }
+    out.push(`<p>${esc(b).replace(/\n/g, "<br>")}</p>`);
+  });
+  return out.join("");
+}
+function insightsPage(){
+  return {title:"Insights", html:`${pageHead("Insights", SITE.insightsLede)}<section class="section"><div class="wrap"><div id="insList" class="grid g2" aria-live="polite"><div class="empty" style="grid-column:1/-1"><p>Loading articles…</p></div></div></div></section>`,
+    async mount(){
+      const el = $("#insList");
+      try {
+        const rows = await api.insights();
+        el.innerHTML = rows.length ? rows.map(r => `<article class="post"><div class="meta">${esc(r.category)} &middot; ${esc(fmtDate(r.published_at))}</div><h3><a href="#/insights/${esc(r.id)}">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><p><a href="#/insights/${esc(r.id)}">Read the article</a></p></article>`).join("")
+          : `<div class="empty" style="grid-column:1/-1"><h3>Our first articles are on the way</h3><p>Subscribe below and we will email you when they are published.</p></div>`;
+      } catch (e) { console.error(e); el.innerHTML = `<div class="empty" style="grid-column:1/-1"><h3>We couldn't load the articles</h3><p>Check your connection and try again.</p></div>`; }
+    }};
+}
+async function showInsight(id){
+  const notFound = () => setView(`${pageHead("Article not found", "It may have been unpublished or moved.")}<section class="section"><div class="wrap article"><a class="back" href="#/insights">&lsaquo; All insights</a><p><a class="btn" href="#/insights">See all insights</a></p></div></section>`, "Not found");
+  if (!DEMO && !/^[0-9a-f-]{36}$/i.test(id)) return notFound();
+  setView(`${pageHead("Insights", "")}<section class="section"><div class="wrap article"><a class="back" href="#/insights">&lsaquo; All insights</a><p>Loading…</p></div></section>`, "Insights");
+  try {
+    const r = await api.insight(id);
+    if (!r) return notFound();
+    setView(`${pageHead(r.title, r.summary)}<article class="section"><div class="wrap article"><a class="back" href="#/insights">&lsaquo; All insights</a><p class="muted"><b>${esc(r.category)}</b> &middot; ${esc(fmtDate(r.published_at))}</p>${renderBody(r.body)}<div class="actions"><a class="btn accent" href="#/contact">Talk to us</a><a class="btn ghost" href="#/insights">More insights</a></div></div></article>`, r.title);
+  } catch (e) { console.error(e); setView(`${pageHead("We couldn't load this article", "Check your connection and try again.")}<section class="section"><div class="wrap article"><a class="back" href="#/insights">&lsaquo; All insights</a></div></section>`, "Error"); }
+}
 
-      <label for="contact_email">Email</label>
-      <input type="email" id="contact_email" name="reply_to" required>
+/* ---------- Privacy and terms ---------- */
+function legalPage(kind){
+  const op = esc(SITE_OPERATOR), mail = /^[^\s@\[\]]+@[^\s@\[\]]+\.[^\s@\[\]]+$/.test(CONTACT_EMAIL) ? `<a href="mailto:${esc(CONTACT_EMAIL)}">${esc(CONTACT_EMAIL)}</a>` : esc(CONTACT_EMAIL);
+  const warn = state.isAdmin && /\[/.test(SITE_OPERATOR + CONTACT_EMAIL) ? `<div class="demo-note" style="border-radius:10px;margin-bottom:1.5rem">Admin note (visitors do not see this): fill in SITE_OPERATOR and CONTACT_EMAIL at the top of the script in index.html.</div>` : "";
+  const S = kind === "privacy" ? [
+    ["Who we are", `<p>${op} operates ${esc(SITE.name)}. If you have a question about this notice, or want your information removed, contact ${mail}.</p>`],
+    ["What we collect and why", `<ul><li><b>Messages you send</b> with the contact form: your name and email address, optionally your organisation and role, the topic, and your message. If you ask for an NDA you may also give your organisation's address and the name of the person who will sign. We use them to reply to you and to keep a record of the conversation.</li><li><b>Chat questions</b>: your question and, if you add one, your email address, so that we can reply.</li><li><b>Email sign-ups</b>: your email address, used only to send the updates you asked for. You can ask to be removed at any time.</li><li><b>Visit counts</b>: to see which pages are used, we record which page you opened, a random code that lasts only while that browser tab is open, and the name of the website you came from. We do not record your IP address and we do not use cookies. We do not count visits when your browser sends Do Not Track or Global Privacy Control, or when a site administrator is signed in.</li><li><b>Spam protection</b>: to stop abuse we keep a scrambled (hashed) form of your network address for about a day to count how many requests come from one place. It cannot be turned back into your address.</li></ul>`],
+    ["Please keep confidential information out of forms", `<p>Do not put confidential, proprietary or sensitive information in the contact form or the chat. If a conversation needs it, we will agree a written non-disclosure agreement first.</p>`],
+    ["Cookies and your browser", `<p>We do not use cookies. A short-lived code in your browser tab is used for the visit count and is cleared when you close the tab. Administrators' browsers also keep a note that the device belongs to an administrator, so their own visits are not counted, and may remember details an administrator types into document forms.</p>`],
+    ["Other organisations that handle data for us", `<ul><li><b>Supabase</b> stores our database, including messages and sign-ups.</li><li><b>jsDelivr</b> delivers a software library the site needs and can see your IP address and browser type when your browser asks for it.</li><li>Our <b>web host</b> delivers the site, and an <b>email service</b> may send our updates if we use one.</li></ul><p>We do not sell your information or use it for advertising. We share it only with these service providers, or when the law requires it.</p>`],
+    ["How long we keep it", `<p>Messages are kept for as long as we need them to reply and to keep a sensible business record, and we delete them on request. Email addresses stay until you ask us to remove them. Visit counts are kept for up to 12 months.</p>`],
+    ["Your choices", `<p>You can ask us to show you, correct or delete your information, or to unsubscribe, by contacting ${mail}. If you live somewhere with a data protection law you may also have the right to complain to the authority that enforces it.</p>`],
+    ["Children", `<p>${esc(SITE.name)} is for professionals and institutions and is not directed at children. We do not knowingly collect personal information from children.</p>`],
+    ["Security", `<p>We use access controls, limits on how much any one visitor can request, and a strict browser security policy. No website is perfectly secure, so please keep sensitive details out of forms.</p>`],
+    ["Changes", `<p>We may update this notice. The date at the top shows the latest version.</p>`]
+  ] : [
+    ["About this site", `<p>This site gives general information about ${esc(SITE.name)}. By using it you agree to these terms. If you do not agree, please do not use it.</p>`],
+    ["Not professional advice", `<p>Nothing here is legal, medical, financial or investment advice, and nothing here is an offer to sell or a request to buy any security. ${esc(SITE.termsAdvice)}</p>`],
+    ["Projections and forward-looking statements", `<p>Where this site describes plans, market figures or projections, they are estimates. Market figures come from third-party reports whose estimates vary widely, and our own planning ranges depend on funding, results and partners. Actual outcomes may differ materially.</p>`],
+    ["Confidentiality", `<p>Please do not send confidential or proprietary information through this site. Our methods, data and materials are confidential. Technical detail is shared only with partners under a signed non-disclosure agreement, and nothing on this site grants any licence or right to them.</p>`],
+    ["Our content", `<p>The text, design and graphics on this site belong to ${op} unless stated otherwise. You may share a link to a page or quote a short passage with credit. Please ask before reusing more.</p>`],
+    ["Fair use", `<p>Do not use automated tools to copy the site in bulk, try to get around its limits, or interfere with how it works.</p>`],
+    ["Links to other sites", `<p>We link to other websites, including our sister company's. We are not responsible for their content or practices.</p>`],
+    ["No guarantee, and limits on responsibility", `<p>The site is provided "as is". To the extent the law allows, ${op} is not responsible for losses caused by using the site or relying on its information. Nothing here limits any right you have under the law that cannot be limited.</p>`],
+    ["Changes and contact", `<p>We may change these terms. The date at the top shows the latest version. Questions: ${mail}.</p>`]
+  ];
+  return {title: kind === "privacy" ? "Privacy notice" : "Terms of use", html:`${pageHead(kind === "privacy" ? "Privacy notice" : "Terms of use", "")}<section class="section legal-page"><div class="wrap narrow"><p class="muted">Last updated ${esc(LEGAL_UPDATED)}</p>${warn}${S.map(([h, b]) => `<h2>${h}</h2>${b}`).join("")}<p class="note" style="margin-top:2rem">This page is a plain-language template written from what the site does. It is not legal advice: have a lawyer who knows your jurisdiction review it.</p></div></section>`};
+}
 
-      <label for="contact_message">Message</label>
-      <textarea id="contact_message" name="message" rows="5" required></textarea>
+/* ---------- Forms: contact, subscribe, chat (delegated) ---------- */
+document.addEventListener("submit", async e => {
+  const f = e.target;
+  if (f.id === "contactForm") {
+    e.preventDefault();
+    const err = $("#c-err"), btn = $("#c-send"); err.textContent = "";
+    if ($("#c-web").value) return;
+    const topic = SITE.contactTopics.find(t => t.id === $("#c-topic").value), name = $("#c-name").value.trim(), email = $("#c-email").value.trim().toLowerCase();
+    const org = $("#c-org").value.trim(), role = $("#c-role").value.trim(), msg = $("#c-msg").value.trim();
+    if (name.length < 2) return err.textContent = "Enter your name.";
+    if (!EMAIL_RE.test(email) || email.length > 254) return err.textContent = "Enter a valid email address so we can reply.";
+    if (topic.org && org.length < 2) return err.textContent = "Enter your organisation for this kind of request.";
+    if (msg.length < 10) return err.textContent = "Tell us a little more: at least 10 characters.";
+    if (!$("#c-consent").checked) return err.textContent = "Tick the box to agree that we may contact you.";
+    if (Date.now() - lastSend < 15000) return err.textContent = "Please wait a few seconds before sending again.";
+    btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const row = {site:SITE.id, source:"form", topic:topic.label, name, email, organization:org || null, role:role || null, message:msg, consent:true};
+      if (topic.nda) { row.address = $("#c-addr").value.trim() || null; row.signatory = $("#c-sign").value.trim() || null; }
+      await api.sendInquiry(row);
+      lastSend = Date.now();
+      $("#contactForm").outerHTML = `<div class="panel" role="status"><h2 style="font-size:1.5rem;margin-bottom:.6rem">Thank you, ${esc(name.split(" ")[0])}</h2><p>We have your message and will reply to ${esc(email)}. ${esc(SITE.replyTime)}</p><p><a class="btn ghost" href="#/insights">Read our insights</a></p></div>`;
+    } catch (ex) { console.error(ex); err.textContent = isLimited(ex) ? "You have sent several messages recently. Please try again later." : "We couldn't send your message. Check your connection and try again."; btn.disabled = false; btn.textContent = "Send message"; }
+  }
+  if (f.classList.contains("subscribe-form")) {
+    e.preventDefault();
+    const err = $(".sub-err", f); err.textContent = "";
+    if ($(".hp", f).value) return;
+    const email = $("input[type=email]", f).value.trim().toLowerCase();
+    if (!EMAIL_RE.test(email) || email.length > 254) return err.textContent = "Enter a valid email address.";
+    if (!$(".fs-consent", f).checked) return err.textContent = "Tick the box to agree to receive updates.";
+    if (Date.now() - lastSub < 10000) return err.textContent = "Please wait a few seconds and try again.";
+    const btn = $("button", f); btn.disabled = true;
+    try { await api.subscribe({site:SITE.id, email, consent:true}); lastSub = Date.now(); f.reset(); toast("Thank you! You're subscribed.", "ok"); }
+    catch (ex) { console.error(ex); err.textContent = isLimited(ex) ? "Too many sign-ups from this connection. Please try again later." : "We couldn't sign you up. Try again in a moment."; }
+    finally { btn.disabled = false; }
+  }
+  if (f.id === "chatForm") {
+    e.preventDefault();
+    const err = $("#ch-err"), btn = $("#ch-send"); err.textContent = "";
+    if ($("#ch-web").value) return;
+    const q = $("#ch-text").value.trim(), email = $("#ch-email").value.trim().toLowerCase();
+    if (q.length < 3) return err.textContent = "Type your question first.";
+    if (email && (!EMAIL_RE.test(email) || email.length > 254)) return err.textContent = "That email address doesn't look right.";
+    if (Date.now() - lastAsk < 10000) return err.textContent = "Please wait a few seconds before sending another question.";
+    btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      await api.sendInquiry({site:SITE.id, source:"chat", topic:"Chat question", name:null, email:email || null, message:q, consent:false});
+      lastAsk = Date.now();
+      const log = $("#chatLog");
+      log.insertAdjacentHTML("beforeend", bubble("me", q) + bubble("bot", email ? `Thanks! We have your question and will reply to ${email}.` : "Thanks! We have your question. You didn't leave an email, so we can't reply directly. Add one next time if you'd like an answer."));
+      log.scrollTop = log.scrollHeight; $("#ch-text").value = "";
+    } catch (ex) { console.error(ex); err.textContent = isLimited(ex) ? "You have sent a lot of questions. Please try again later." : "We couldn't send that. Check your connection and try again."; }
+    finally { btn.disabled = false; btn.textContent = "Send"; }
+  }
+});
+let lastSend = 0, lastSub = 0, lastAsk = 0;
+const bubble = (who, text) => `<div class="bubble ${who}">${esc(text)}</div>`;
+function setChat(open){
+  $("#chatPanel").hidden = !open; $("#chatFab").hidden = open; $("#chatFab").setAttribute("aria-expanded", String(open));
+  if (!open) return $("#chatFab").focus();
+  if (!$("#chatLog").children.length) $("#chatLog").innerHTML = bubble("bot", SITE.chatGreeting);
+  $("#ch-err").textContent = ""; $("#ch-text").focus();
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#chatPanel") && !$("#chatPanel").hidden) setChat(false); });
+document.addEventListener("click", e => {
+  if (e.target.closest("#chatFab")) return setChat(true);
+  if (e.target.closest("#chatClose")) return setChat(false);
+  const tg = e.target.closest("#navToggle");
+  if (tg) { const open = $("#nav").classList.toggle("open"); tg.setAttribute("aria-expanded", String(open)); }
+  const nb = e.target.closest("#netBtn");
+  if (nb) return setNet(nb.getAttribute("aria-expanded") !== "true");
+  if (!e.target.closest(".netmenu")) setNet(false);   // a click anywhere else closes the network menu
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#netBtn")?.getAttribute("aria-expanded") === "true") { setNet(false); $("#netBtn").focus(); } });
+document.addEventListener("focusin", e => { if (!e.target.closest(".netmenu")) setNet(false); });   // tabbing away closes it
+document.addEventListener("keydown", e => { if (e.target.id === "ch-text" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("#chatForm").requestSubmit(); } });
 
-      <button type="submit" class="btn-primary" style="margin-top:18px;">Send Message</button>
-      <div id="contact_status" aria-live="polite"></div>
-    </form>
-  </div>
-</section>
+/* =====================================================================
+   ADMIN: reached only through the secret address; real protection is the database rules
+   ===================================================================== */
+const STATUSES = ["New", "In discussion", "NDA sent", "NDA signed", "Closed"];
+async function showAdmin(){
+  state.isAdmin = !!(await api.session()); await updateNav2();
+  if (!state.isAdmin) {
+    setView(`<section class="section"><div class="wrap admin"><a class="back" href="#/">&lsaquo; Back to the site</a><h1>Administrator sign in</h1>
+      <p class="muted">Sign in to read messages, write insights and see traffic.${DEMO ? " <b>Demo mode:</b> any email and password will work." : ""}</p>
+      <form class="login-card f" id="loginForm" novalidate>
+        <div class="field"><label for="li-email">Email</label><input id="li-email" type="email" autocomplete="username" required></div>
+        <div class="field"><label for="li-pass">Password</label><div class="pw"><input id="li-pass" type="password" autocomplete="current-password" required><button class="pwbtn" type="button" id="pwToggle" aria-pressed="false" aria-controls="li-pass">Show</button></div></div>
+        <p class="err" id="li-err" role="alert"></p><button class="btn" type="submit">Sign in</button></form></div></section>`, "Admin");
+    $("#pwToggle").addEventListener("click", e => { const i = $("#li-pass"), show = i.type === "password"; i.type = show ? "text" : "password"; e.target.textContent = show ? "Hide" : "Show"; e.target.setAttribute("aria-pressed", String(show)); i.focus(); });
+    $("#loginForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      try { await api.signIn($("#li-email").value.trim(), $("#li-pass").value); await updateNav2(); showAdmin(); }
+      catch (ex) {
+        console.error("Sign-in error:", ex); const m = String(ex?.message || "");
+        $("#li-err").textContent = m.includes("administrator") ? m : /invalid login/i.test(m) ? "Email or password is incorrect."
+          : /not confirmed/i.test(m) ? "This email hasn't been confirmed yet. Confirm the user in Supabase (Authentication > Users)."
+          : /disabled/i.test(m) ? "Email sign-in is turned off in Supabase (Authentication > Providers > Email)."
+          : "Sign-in failed: " + (m || "unknown error. Open the browser console (F12) for details.");
+      }
+    });
+    return;
+  }
+  store.set("admin", true);
+  setView(`<section class="section"><div class="wrap admin"><div style="display:flex;gap:1rem;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+    <div><h1>Admin: ${esc(SITE.name)}</h1><p class="muted" style="margin:0">Messages, insights, subscribers and traffic for this site.</p></div>
+    <button class="btn ghost small" type="button" id="signOut">Sign out</button></div>
+    <div class="tabs" id="admTabs" role="group" aria-label="Admin sections"></div><div id="admBody"></div></div></section>`, "Admin");
+  $("#signOut").addEventListener("click", async () => { await api.signOut(); state.isAdmin = false; store.set("admin", false); await updateNav2(); location.hash = "#/"; toast("Signed out."); });
+  renderAdminTab(); refreshNew();
+}
+async function updateNav2(){ /* admin state is read directly where needed; kept for clarity */ adminCheckDone(); }
+async function refreshNew(){ try { state.newCount = await api.newInquiryCount(); } catch {} renderAdminTabs(); }
+function renderAdminTabs(){
+  const el = $("#admTabs"); if (!el) return;
+  el.innerHTML = [["inbox", "Inbox" + (state.newCount ? `<span class="n">${state.newCount}</span>` : "")], ["insights", "Insights"], ["templates", "Documents"], ["subs", "Subscribers"], ["traffic", "Traffic"]]
+    .map(([k, l]) => `<button class="tab" type="button" data-tab="${k}" aria-pressed="${state.tab === k}">${l}</button>`).join("");
+}
+function renderAdminTab(){
+  renderAdminTabs();
+  ({inbox:showInbox, insights:showInsightsAdmin, templates:showDocs, subs:showSubs, traffic:showTraffic})[state.tab]();
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-tab]"); if (t && $("#admBody")) { state.tab = t.dataset.tab; renderAdminTab(); }
+});
 
-<footer class="site-footer">
-  <p>&copy; <span id="footer-year"></span> ThermoGen Biotech. All rights reserved. Patent Pending.</p>
-</footer>
+/* ----- Inbox ----- */
+async function showInbox(){
+  const el = $("#admBody"); el.innerHTML = '<p class="muted">Loading…</p>';
+  try { state.inq = await api.inquiries(); renderInbox(); }
+  catch (e) { console.error(e); el.innerHTML = `<div class="empty"><h3>Couldn't load messages</h3><p>Make sure you ran thermo_setup.sql and that you are signed in as the administrator.</p></div>`; }
+}
+function inqFiltered(){
+  const f = state.inqFilter, q = f.q.trim().toLowerCase();
+  return state.inq.filter(i => (f.status === "All" || i.status === f.status) && (f.source === "All" || i.source === f.source) &&
+    (!q || [i.name, i.email, i.organization, i.message, i.topic].join(" ").toLowerCase().includes(q)));
+}
+function renderInbox(){
+  const f = state.inqFilter;
+  $("#admBody").innerHTML = `<div class="afilters">
+    <label class="sr-only" for="if-status">Status</label><select id="if-status">${["All", ...STATUSES].map(s => `<option ${s === f.status ? "selected" : ""}>${s}</option>`).join("")}</select>
+    <label class="sr-only" for="if-source">Source</label><select id="if-source">${[["All", "All sources"], ["form", "Contact form"], ["chat", "Chat"]].map(([v, l]) => `<option value="${v}" ${v === f.source ? "selected" : ""}>${l}</option>`).join("")}</select>
+    <label class="sr-only" for="if-q">Search</label><input id="if-q" type="search" placeholder="Search name, email, organisation or message" value="${esc(f.q)}"></div>
+    <div class="arow-actions" style="margin-bottom:.8rem"><span class="muted" id="inqCount"></span><button class="btn ghost small" type="button" id="inqCsv">Download CSV</button></div>
+    <div id="inqList" class="alist"></div>`;
+  $("#if-status").addEventListener("change", e => { f.status = e.target.value; renderInqList(); });
+  $("#if-source").addEventListener("change", e => { f.source = e.target.value; renderInqList(); });
+  $("#if-q").addEventListener("input", e => { f.q = e.target.value; renderInqList(); });
+  $("#inqCsv").addEventListener("click", () => downloadCsv("inquiries.csv", [["Received","Status","Source","Topic","Name","Email","Organisation","Role","Message","Notes"], ...inqFiltered().map(i => [i.created_at, i.status, i.source, i.topic, i.name, i.email, i.organization, i.role, i.message, i.admin_notes])]));
+  renderInqList();
+}
+function renderInqList(){
+  const list = inqFiltered(), el = $("#inqList"); if (!el) return;
+  $("#inqCount").textContent = `${list.length} of ${state.inq.length} messages`;
+  el.innerHTML = list.length ? list.map(i => {
+    const reply = i.email ? `mailto:${i.email}?subject=${encodeURIComponent("Re: your message to " + SITE.name)}&body=${encodeURIComponent("Hi" + (i.name ? " " + i.name.split(" ")[0] : "") + ",\n\nThank you for getting in touch. You wrote:\n\"" + i.message + "\"\n\n")}` : "";
+    return `<div class="arow ${i.status === "New" ? "new" : ""}" data-id="${esc(i.id)}">
+      <div class="arow-top"><strong>${esc(i.name || "Chat visitor")}</strong>${i.email ? `<span>${esc(i.email)}</span>` : "<span>no email left</span>"}${i.organization ? `<span>${esc(i.organization)}${i.role ? ", " + esc(i.role) : ""}</span>` : ""}<span class="pill">${esc(i.topic || "")}</span><span class="pill">${i.source === "chat" ? "Chat" : "Form"}</span><span>${esc(ago(i.created_at))}</span></div>
+      <p class="msg">${esc(i.message)}</p>
+      <div class="arow-actions"><label class="sr-only" for="st-${esc(i.id)}">Status</label><select id="st-${esc(i.id)}" data-act="status">${STATUSES.map(s => `<option ${s === i.status ? "selected" : ""}>${s}</option>`).join("")}</select>
+        <button class="btn small" type="button" data-act="prep">Prepare document</button>${i.email ? `<a class="btn ghost small" href="${esc(reply)}" target="_blank" rel="noopener noreferrer">Reply by email</a>` : ""}<button class="btn danger small" type="button" data-act="del">Delete</button></div>
+      <label class="sr-only" for="nt-${esc(i.id)}">Private notes</label><textarea id="nt-${esc(i.id)}" placeholder="Private notes (only you can see these)" maxlength="4000">${esc(i.admin_notes || "")}</textarea>
+      <div class="arow-actions"><button class="btn ghost small" type="button" data-act="note">Save note</button></div></div>`;
+  }).join("") : `<div class="empty"><h3>No messages here</h3><p>${state.inq.length ? "Try changing the filters." : "Messages from the contact form and chat will appear here."}</p></div>`;
+}
+document.addEventListener("change", async e => {
+  if (e.target.dataset.act !== "status") return;
+  const id = e.target.closest(".arow").dataset.id, i = state.inq.find(x => String(x.id) === id);
+  try { await api.updateInquiry(id, {status:e.target.value}); i.status = e.target.value; toast("Status updated.", "ok"); renderInqList(); refreshNew(); }
+  catch (ex) { console.error(ex); toast("Couldn't update the status.", "error"); }
+});
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-act]"); if (!b || !$("#inqList")?.contains(b)) return;
+  const row = b.closest(".arow"), id = row.dataset.id;
+  if (b.dataset.act === "prep") return openDocModal(id);
+  if (b.dataset.act === "note") { try { await api.updateInquiry(id, {admin_notes:$("textarea", row).value.trim() || null}); state.inq.find(x => String(x.id) === id).admin_notes = $("textarea", row).value.trim(); toast("Note saved.", "ok"); } catch (ex) { console.error(ex); toast("Couldn't save the note.", "error"); } }
+  if (b.dataset.act === "del") { if (!confirm("Delete this message permanently?")) return; try { await api.removeInquiry(id); state.inq = state.inq.filter(x => String(x.id) !== id); renderInqList(); refreshNew(); toast("Message deleted."); } catch (ex) { console.error(ex); toast("Couldn't delete it.", "error"); } }
+});
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="script.js"></script>
+/* ----- Insights editor ----- */
+async function showInsightsAdmin(){
+  const el = $("#admBody"); el.innerHTML = '<p class="muted">Loading…</p>';
+  try { state.ins = await api.allInsights(); renderInsightsAdmin(); }
+  catch (e) { console.error(e); el.innerHTML = `<div class="empty"><h3>Couldn't load articles</h3><p>Make sure you ran thermo_setup.sql and that you are signed in as the administrator.</p></div>`; }
+}
+function renderInsightsAdmin(){
+  const ed = state.editing;
+  $("#admBody").innerHTML = `<div class="arow-actions" style="margin:.5rem 0 1rem"><button class="btn small" type="button" id="newIns">Write a new article</button><span class="muted">${state.ins.filter(i => i.status === "Published").length} published, ${state.ins.filter(i => i.status === "Draft").length} drafts</span></div>
+    ${ed ? editorHtml(ed) : ""}
+    <div class="alist">${state.ins.length ? state.ins.map(i => `<div class="arow" data-id="${esc(i.id)}"><div class="arow-top"><strong>${esc(i.title)}</strong><span class="pill s-${esc(i.status)}">${esc(i.status)}</span><span class="pill">${esc(i.category)}</span><span>${i.published_at ? "Published " + esc(fmtDate(i.published_at)) : "Created " + esc(ago(i.created_at))}</span></div>
+      <p class="msg muted">${esc(i.summary)}</p><div class="arow-actions"><button class="btn ghost small" type="button" data-ins="edit">Edit</button><button class="btn small" type="button" data-ins="toggle">${i.status === "Published" ? "Unpublish" : "Publish"}</button><button class="btn danger small" type="button" data-ins="del">Delete</button></div></div>`).join("") : `<div class="empty"><h3>No articles yet</h3><p>Write your first one.</p></div>`}</div>`;
+}
+function editorHtml(ed){
+  return `<form class="editor f" id="insForm" novalidate><h2 style="font-size:1.3rem">${ed.id ? "Edit article" : "New article"}</h2>
+    <div class="row2"><div class="field"><label for="in-title">Title</label><input id="in-title" maxlength="140" value="${esc(ed.title || "")}" required></div>
+      <div class="field"><label for="in-cat">Category</label><select id="in-cat">${SITE.insightCats.map(c => `<option ${c === ed.category ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div></div>
+    <div class="field"><label for="in-sum">Summary <span class="hint">(shown on the Insights page, up to 300 characters)</span></label><textarea id="in-sum" maxlength="300" style="min-height:80px">${esc(ed.summary || "")}</textarea></div>
+    <div class="field"><label for="in-body">Article <span class="hint">(a blank line starts a new paragraph; start a line with ## for a heading and - for a bullet)</span></label><textarea id="in-body" maxlength="20000" style="min-height:260px">${esc(ed.body || "")}</textarea></div>
+    <p class="err" id="in-err" role="alert"></p>
+    <div class="arow-actions"><button class="btn" type="submit" data-status="Published">Publish</button><button class="btn ghost" type="submit" data-status="Draft">Save as draft</button><button class="btn ghost" type="button" id="insCancel">Cancel</button></div></form>`;
+}
+document.addEventListener("click", async e => {
+  if (!$("#admBody")) return;
+  if (e.target.id === "newIns") { state.editing = {category:SITE.insightCats[0]}; renderInsightsAdmin(); $("#in-title")?.focus(); }
+  if (e.target.id === "insCancel") { state.editing = null; renderInsightsAdmin(); }
+  const b = e.target.closest("[data-ins]"); if (!b) return;
+  const id = b.closest(".arow").dataset.id, i = state.ins.find(x => String(x.id) === id);
+  if (b.dataset.ins === "edit") { state.editing = {...i}; renderInsightsAdmin(); $("#in-title")?.focus(); window.scrollTo({top:0, behavior:"smooth"}); }
+  if (b.dataset.ins === "toggle") { const next = i.status === "Published" ? "Draft" : "Published"; try { await api.saveInsight({id, status:next}); toast(next === "Published" ? "Published." : "Moved back to drafts.", "ok"); showInsightsAdmin(); } catch (ex) { console.error(ex); toast("Couldn't change that article.", "error"); } }
+  if (b.dataset.ins === "del") { if (!confirm("Delete this article permanently?")) return; try { await api.removeInsight(id); toast("Article deleted."); showInsightsAdmin(); } catch (ex) { console.error(ex); toast("Couldn't delete it.", "error"); } }
+});
+document.addEventListener("submit", async e => {
+  if (e.target.id !== "insForm") return;
+  e.preventDefault();
+  const status = (e.submitter && e.submitter.dataset.status) || "Draft", err = $("#in-err"); err.textContent = "";
+  const row = {title:$("#in-title").value.trim(), category:$("#in-cat").value, summary:$("#in-sum").value.trim(), body:$("#in-body").value.trim(), status};
+  if (row.title.length < 3) return err.textContent = "Add a title.";
+  if (row.summary.length < 3) return err.textContent = "Add a short summary.";
+  if (row.body.length < 3) return err.textContent = "Write the article.";
+  if (state.editing?.id) row.id = state.editing.id;
+  try { await api.saveInsight(row); state.editing = null; toast(status === "Published" ? "Published." : "Saved as a draft.", "ok"); showInsightsAdmin(); }
+  catch (ex) { console.error(ex); err.textContent = "Couldn't save. Make sure you ran thermo_setup.sql and are signed in as the administrator."; }
+});
+
+/* ----- Subscribers ----- */
+async function showSubs(){
+  const el = $("#admBody"); el.innerHTML = '<p class="muted">Loading…</p>';
+  try { state.subs = await api.subscribers(); renderSubs(); }
+  catch (e) { console.error(e); el.innerHTML = `<div class="empty"><h3>Couldn't load subscribers</h3><p>Make sure you ran thermo_setup.sql.</p></div>`; }
+}
+const subsFiltered = () => state.subs.filter(s => !state.subQ.trim() || s.email.toLowerCase().includes(state.subQ.trim().toLowerCase()));
+function renderSubs(){
+  $("#admBody").innerHTML = `<div class="afilters"><label class="sr-only" for="sq">Search emails</label><input id="sq" type="search" placeholder="Search email" value="${esc(state.subQ)}"></div>
+    <div class="arow-actions" style="margin-bottom:.8rem"><span class="muted" id="subCount"></span><button class="btn small" type="button" id="subCsv">Download CSV</button><button class="btn ghost small" type="button" id="subCopy">Copy emails</button></div><div id="subList" class="alist"></div>`;
+  $("#sq").addEventListener("input", e => { state.subQ = e.target.value; renderSubList(); });
+  $("#subCsv").addEventListener("click", () => downloadCsv("subscribers.csv", [["Email","Subscribed"], ...subsFiltered().map(s => [s.email, s.created_at])]));
+  $("#subCopy").addEventListener("click", async () => { try { await navigator.clipboard.writeText(subsFiltered().map(s => s.email).join(", ")); toast(`Copied ${subsFiltered().length} addresses.`, "ok"); } catch { toast("Couldn't copy. Use Download CSV instead.", "error"); } });
+  renderSubList();
+}
+function renderSubList(){
+  const list = subsFiltered(), el = $("#subList"); if (!el) return;
+  $("#subCount").textContent = `${list.length} of ${state.subs.length} subscribers`;
+  el.innerHTML = list.length ? list.map(s => `<div class="arow" data-id="${esc(s.id)}"><div class="arow-top"><strong><a href="mailto:${esc(s.email)}" target="_blank" rel="noopener noreferrer">${esc(s.email)}</a></strong><span>${esc(ago(s.created_at))}</span></div><div class="arow-actions"><button class="btn danger small" type="button" data-sub="del">Remove</button></div></div>`).join("")
+    : `<div class="empty"><h3>No subscribers ${state.subs.length ? "match" : "yet"}</h3><p>${state.subs.length ? "Try clearing the search." : "People who subscribe will appear here."}</p></div>`;
+}
+document.addEventListener("click", async e => {
+  const b = e.target.closest("[data-sub]"); if (!b) return;
+  if (!confirm("Remove this subscriber permanently?")) return;
+  const id = b.closest(".arow").dataset.id;
+  try { await api.removeSub(id); state.subs = state.subs.filter(x => String(x.id) !== id); renderSubList(); toast("Subscriber removed."); } catch (ex) { console.error(ex); toast("Couldn't remove that subscriber.", "error"); }
+});
+
+/* ----- Traffic ----- */
+async function showTraffic(){
+  const el = $("#admBody"); el.innerHTML = '<p class="muted">Loading…</p>';
+  try { renderTraffic(await api.traffic(state.days)); }
+  catch (e) { console.error(e); el.innerHTML = `<div class="empty"><h3>Couldn't load traffic</h3><p>Make sure you ran thermo_setup.sql and are signed in as the administrator.</p></div>`; }
+}
+function renderTraffic(t){
+  const days = state.days, map = Object.fromEntries((t.by_day || []).map(d => [String(d.day).slice(0, 10), Number(d.views)])), series = [];
+  for (let i = days - 1; i >= 0; i--) { const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10); series.push([d, map[d] || 0]); }
+  const max = Math.max(1, ...series.map(x => x[1]));
+  const rank = (rows, label) => { const m = Math.max(1, ...rows.map(r => Number(r.views))); return rows.length ? `<div class="rank">${rows.map(r => `<div class="rank-row"><span>${esc(label(r))}</span><span class="rank-bar"><i style="width:${Number(r.views) / m * 100}%"></i></span><b>${Number(r.views)}</b></div>`).join("")}</div>` : `<p class="muted">No data yet.</p>`; };
+  $("#admBody").innerHTML = `<div class="tabs" role="group" aria-label="Date range">${[7, 30, 90].map(n => `<button class="tab" type="button" data-days="${n}" aria-pressed="${days === n}">Last ${n} days</button>`).join("")}</div>
+    <div class="stats"><div class="stat"><b>${Number(t.total_views || 0)}</b><span>Page views</span></div><div class="stat"><b>${Number(t.unique_visitors || 0)}</b><span>Visits (browser sessions)</span></div><div class="stat"><b>${Number(t.new_inquiries || 0)}</b><span>New messages</span></div><div class="stat"><b>${Number(t.subscribers || 0)}</b><span>Subscribers</span></div></div>
+    <div class="panel" style="margin:.8rem 0"><h2 style="font-size:1.1rem;margin-bottom:.8rem">Page views per day</h2><div class="bars" role="img" aria-label="Bar chart of page views per day">${series.map(([d, v]) => `<i style="height:${Math.max(2, v / max * 100)}%" title="${d}: ${v} views"></i>`).join("")}</div></div>
+    <div class="grid g2"><div class="panel"><h2 style="font-size:1.1rem;margin-bottom:.8rem">Most visited pages</h2>${rank(t.by_path || [], r => r.path === "/" ? "Home" : r.path)}</div><div class="panel"><h2 style="font-size:1.1rem;margin-bottom:.8rem">Where visitors came from</h2>${rank(t.by_referrer || [], r => r.ref)}</div></div>
+    <p class="note" style="margin-top:1rem">Cookie-free: visits are counted per browser tab session and no IP addresses are stored. Your own visits are not counted while you are signed in as admin on this browser.</p>`;
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-days]"); if (b && $("#admBody")) { state.days = Number(b.dataset.days); showTraffic(); } });
+
+/* ----- Documents: private templates (such as your NDA) and "Prepare document" ----- */
+const VAR_LABELS = {effective_date:"Effective date", recipient_party:"Receiving party (person or organisation)", recipient_name:"Recipient name", recipient_first_name:"Recipient first name",
+  recipient_address:"Receiving party address", recipient_signatory:"Receiving party signatory (name)", recipient_title:"Signatory title or affiliation",
+  disclosing_address:"Your address for the agreement", disclosing_party:"Disclosing party", purpose:"Purpose of the discussions", term:"Agreement term", survival_term:"How long confidentiality continues",
+  governing_law:"Governing law", sender_name:"Your name", sender_title:"Your title"};
+const VAR_HINTS = {effective_date:"for example 15 October 2026", purpose:"keep it general: recipients read this before they sign", term:"for example three (3) years", survival_term:"for example five (5) years", governing_law:"choose one place, with your attorney", disclosing_address:"remembered on this device only"};
+const todayLong = () => new Date().toLocaleDateString("en-GB", {day:"numeric", month:"long", year:"numeric"});
+const tplVars = body => [...new Set([...String(body).matchAll(/\{\{\s*([a-z_]+)\s*\}\}/g)].map(m => m[1]))];
+const fillTpl = (body, vals) => String(body).replace(/\{\{\s*([a-z_]+)\s*\}\}/g, (_, k) => { const v = String(vals[k] ?? "").trim(); return v || `[${(VAR_LABELS[k] || k.replace(/_/g, " ")).toLowerCase()}]`; });
+const isEmailTpl = body => /^Subject:/i.test(String(body).trim());
+function docHtml(text){
+  const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+  return String(text).replace(/\r/g, "").split(/\n{2,}/).map(b => {
+    const lines = b.split("\n");
+    if (/^# /.test(b)) return `<h3>${inline(b.replace(/^# /, ""))}</h3>`;
+    if (lines.every(l => /^- /.test(l))) return `<ul>${lines.map(l => `<li>${inline(l.slice(2))}</li>`).join("")}</ul>`;
+    return `<p>${lines.map(inline).join("<br>")}</p>`;
+  }).join("");
+}
+function docDefaults(inq){
+  return {effective_date:todayLong(), recipient_party:inq.organization || inq.name || "", recipient_name:inq.name || "", recipient_first_name:(inq.name || "").split(" ")[0],
+    recipient_address:inq.address || "", recipient_signatory:inq.signatory || inq.name || "", recipient_title:inq.role || "", disclosing_address:store.get("nda_addr", ""),
+    disclosing_party:"", purpose:"the Disclosing Party's microbial biotechnology research and its potential applications in medicine and the environment", term:"", survival_term:"", governing_law:"",
+    sender_name:"Denver Jn. Baptiste", sender_title:"Co-Founder & CEO"};
+}
+let dm = null;
+async function openDocModal(inqId){
+  const inq = state.inq.find(x => String(x.id) === String(inqId)); if (!inq) return;
+  let tpls; try { tpls = await api.templates(); } catch (e) { console.error(e); return toast("Couldn't load your documents. Did you run thermo_setup.sql?", "error"); }
+  if (!tpls.length) return toast("You have no documents yet. Add one in the Documents tab.", "error");
+  const pick = (/nda/i.test(inq.topic || "") ? tpls.find(t => t.key === "nda") : null) || tpls[0];
+  dm = {inq, tpls, tpl:pick, vals:docDefaults(inq)}; renderDocModal();
+}
+function renderDocModal(){
+  let m = $("#docModal"); if (!m) { m = document.createElement("div"); m.id = "docModal"; m.className = "modal"; document.body.appendChild(m); }
+  const t = dm.tpl, vars = tplVars(t.body), email = isEmailTpl(t.body);
+  m.hidden = false;
+  m.innerHTML = `<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="dm-title">
+    <header><div><h2 id="dm-title">Prepare a document</h2><p class="muted" style="margin:0">For ${esc(dm.inq.name || "chat visitor")}${dm.inq.organization ? ", " + esc(dm.inq.organization) : ""}</p></div><button class="x dark" type="button" id="dmClose" aria-label="Close">&times;</button></header>
+    <div class="modal-body"><div class="field"><label for="dm-tpl">Document</label><select id="dm-tpl">${dm.tpls.map(x => `<option value="${esc(x.id)}" ${x.id === t.id ? "selected" : ""}>${esc(x.title)}</option>`).join("")}</select></div>
+      <div class="dm-grid"><div class="dm-fields">${vars.length ? vars.map(k => { const label = VAR_LABELS[k] || k.replace(/_/g, " "), hint = VAR_HINTS[k];
+        return `<div class="field"><label for="dv-${k}">${esc(label)}${hint ? ` <span class="hint">(${esc(hint)})</span>` : ""}</label>${k === "purpose" ? `<textarea id="dv-${k}" data-var="${k}" rows="3">${esc(dm.vals[k] || "")}</textarea>` : `<input id="dv-${k}" data-var="${k}" value="${esc(dm.vals[k] || "")}" autocomplete="off">`}</div>`; }).join("") : `<p class="muted">This document has nothing to fill in.</p>`}</div>
+        <div><div class="dm-warn" id="dm-warn" role="status"></div><div class="docpaper" id="dm-paper" tabindex="0" aria-label="Document preview"></div></div></div></div>
+    <footer class="dm-actions">${email ? `<a class="btn" id="dmMail" target="_blank" rel="noopener noreferrer" href="#">Open in my email app</a>` : `<button class="btn" type="button" id="dmPrint">Print or save as PDF</button><button class="btn ghost" type="button" id="dmWord">Download for Word</button>`}
+      <button class="btn ghost" type="button" id="dmCopy">Copy text</button>${/^nda/.test(t.key) && dm.inq.status !== "NDA sent" && dm.inq.status !== "NDA signed" ? `<button class="btn ghost" type="button" id="dmSent">Mark as "NDA sent"</button>` : ""}</footer></div>`;
+  updateDocPreview(); $("#dm-tpl").focus();
+}
+function docMailHref(filled){
+  const lines = filled.replace(/\r/g, "").split("\n"), subject = (lines.shift() || "").replace(/^Subject:\s*/i, ""), body = lines.join("\n").replace(/^\n+/, "");
+  return `mailto:${encodeURIComponent(dm.inq.email || "")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+function updateDocPreview(){
+  const t = dm.tpl, filled = fillTpl(t.body, dm.vals), email = isEmailTpl(t.body);
+  $("#dm-paper").innerHTML = email ? `<pre class="docmail">${esc(filled)}</pre>` : docHtml(filled);
+  const missing = tplVars(t.body).filter(k => !String(dm.vals[k] ?? "").trim());
+  const w = $("#dm-warn"); w.className = "dm-warn " + (missing.length ? "bad" : "good");
+  w.innerHTML = missing.length ? `<b>${missing.length} item${missing.length > 1 ? "s" : ""} still to fill in:</b> ${missing.map(k => esc(VAR_LABELS[k] || k)).join(", ")}. They show in [brackets] in the document.` : "All fields are filled in. Read the whole document once before you send it.";
+  const mail = $("#dmMail"); if (mail) { if (dm.inq.email) mail.href = docMailHref(filled); else { mail.removeAttribute("href"); mail.setAttribute("aria-disabled", "true"); mail.textContent = "No email address for this person"; } }
+}
+function closeDocModal(){ const m = $("#docModal"); if (m) { m.hidden = true; m.innerHTML = ""; } dm = null; }
+function downloadBlob(name, blob){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+document.addEventListener("input", e => {
+  const k = e.target.dataset && e.target.dataset.var; if (!k || !dm) return;
+  dm.vals[k] = e.target.value; if (k === "disclosing_address") store.set("nda_addr", e.target.value); updateDocPreview();
+});
+document.addEventListener("change", e => { if (e.target.id === "dm-tpl" && dm) { dm.tpl = dm.tpls.find(x => String(x.id) === e.target.value); renderDocModal(); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#docModal") && !$("#docModal").hidden) closeDocModal(); });
+document.addEventListener("click", async e => {
+  const m = $("#docModal"); if (!m || m.hidden || !dm) return;
+  if (e.target === m || e.target.closest("#dmClose")) return closeDocModal();
+  if (e.target.closest("#dmPrint")) {
+    let p = $("#docPrint"); if (!p) { p = document.createElement("div"); p.id = "docPrint"; p.className = "docprint"; document.body.appendChild(p); }
+    p.innerHTML = $("#dm-paper").innerHTML; document.body.classList.add("printing");
+    try { window.print(); } finally { document.body.classList.remove("printing"); }
+  }
+  if (e.target.closest("#dmWord")) {
+    const who = (dm.inq.organization || dm.inq.name || "document").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "document";
+    const html = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${esc(dm.tpl.title)}</title><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.35}h3{font-size:12pt;margin:14pt 0 4pt}p{margin:0 0 8pt}li{margin:0 0 6pt}</style></head><body>${$("#dm-paper").innerHTML}</body></html>`;
+    downloadBlob(`${dm.tpl.key}-${who}.doc`, new Blob(["\ufeff" + html], {type:"application/msword"}));
+  }
+  if (e.target.closest("#dmCopy")) { try { await navigator.clipboard.writeText(fillTpl(dm.tpl.body, dm.vals)); toast("Copied.", "ok"); } catch { toast("Couldn't copy. Use Print or Download instead.", "error"); } }
+  if (e.target.closest("#dmSent")) {
+    try { await api.updateInquiry(dm.inq.id, {status:"NDA sent"}); dm.inq.status = "NDA sent"; toast('Marked as "NDA sent".', "ok"); closeDocModal(); renderInqList(); refreshNew(); }
+    catch (ex) { console.error(ex); toast("Couldn't update the status.", "error"); }
+  }
+});
+
+async function showDocs(){
+  const el = $("#admBody"); el.innerHTML = '<p class="muted">Loading…</p>';
+  try { state.tpls = await api.templates(); renderDocs(); }
+  catch (e) { console.error(e); el.innerHTML = `<div class="empty"><h3>Couldn't load documents</h3><p>Make sure you ran thermo_setup.sql (the latest version) and that you are signed in as the administrator.</p></div>`; }
+}
+function renderDocs(){
+  const ed = state.editingTpl, names = Object.keys(VAR_LABELS).map(k => `{{${k}}}`).join("  ");
+  $("#admBody").innerHTML = `<p class="muted" style="max-width:70ch">Documents such as your NDA are kept here, privately: visitors can never read them and their text is not part of the public website. Words in double curly brackets, like <code>{{recipient_party}}</code>, are filled in when you press <b>Prepare document</b> on a message in your Inbox.</p>
+    <div class="arow-actions" style="margin:.5rem 0 1rem"><button class="btn small" type="button" id="newTpl">Add a document</button><span class="muted">${(state.tpls || []).length} document${(state.tpls || []).length === 1 ? "" : "s"}</span></div>
+    ${ed ? `<form class="editor f" id="tplForm" novalidate><h2 style="font-size:1.3rem">${ed.id ? "Edit document" : "New document"}</h2>
+      <div class="row2"><div class="field"><label for="tp-title">Title</label><input id="tp-title" maxlength="140" value="${esc(ed.title || "")}" required></div>
+        <div class="field"><label for="tp-key">Short name <span class="hint">(letters, numbers and hyphens, e.g. nda)</span></label><input id="tp-key" maxlength="40" value="${esc(ed.key || "")}" ${ed.id ? "readonly" : ""} required></div></div>
+      <div class="field"><label for="tp-body">Text <span class="hint">(# starts a heading, - starts a bullet, **bold** works; a first line that begins "Subject:" makes it an email)</span></label><textarea id="tp-body" maxlength="60000" style="min-height:380px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem">${esc(ed.body || "")}</textarea></div>
+      <p class="note">Names you can use: ${esc(names)}. Any other name you invent becomes an empty box to fill in.</p>
+      <p class="err" id="tp-err" role="alert"></p><div class="arow-actions"><button class="btn" type="submit">Save document</button><button class="btn ghost" type="button" id="tplCancel">Cancel</button></div></form>` : ""}
+    <div class="alist">${(state.tpls || []).length ? state.tpls.map(t => `<div class="arow" data-id="${esc(t.id)}"><div class="arow-top"><strong>${esc(t.title)}</strong><span class="pill">${esc(t.key)}</span><span>Updated ${esc(ago(t.updated_at))}</span><span>${tplVars(t.body).length} fill-in fields</span></div>
+      <div class="arow-actions"><button class="btn ghost small" type="button" data-tpl="edit">Edit</button><button class="btn danger small" type="button" data-tpl="del">Delete</button></div></div>`).join("") : `<div class="empty"><h3>No documents yet</h3><p>Add your first one.</p></div>`}</div>`;
+}
+document.addEventListener("click", async e => {
+  if (!$("#admBody")) return;
+  if (e.target.id === "newTpl") { state.editingTpl = {}; renderDocs(); $("#tp-title")?.focus(); }
+  if (e.target.id === "tplCancel") { state.editingTpl = null; renderDocs(); }
+  const b = e.target.closest("[data-tpl]"); if (!b) return;
+  const id = b.closest(".arow").dataset.id, t = (state.tpls || []).find(x => String(x.id) === id);
+  if (b.dataset.tpl === "edit") { state.editingTpl = {...t}; renderDocs(); $("#tp-title")?.focus(); window.scrollTo({top:0, behavior:"smooth"}); }
+  if (b.dataset.tpl === "del") { if (!confirm("Delete this document permanently?")) return; try { await api.removeTemplate(id); toast("Document deleted."); showDocs(); } catch (ex) { console.error(ex); toast("Couldn't delete it.", "error"); } }
+});
+document.addEventListener("submit", async e => {
+  if (e.target.id !== "tplForm") return;
+  e.preventDefault();
+  const err = $("#tp-err"); err.textContent = "";
+  const row = {title:$("#tp-title").value.trim(), key:$("#tp-key").value.trim().toLowerCase(), body:$("#tp-body").value.trim()};
+  if (row.title.length < 3) return err.textContent = "Add a title.";
+  if (!/^[a-z0-9-]{2,40}$/.test(row.key)) return err.textContent = "The short name can use only lowercase letters, numbers and hyphens (2 to 40 characters).";
+  if (row.body.length < 3) return err.textContent = "Add the text of the document.";
+  if (state.editingTpl?.id) row.id = state.editingTpl.id;
+  try { await api.saveTemplate(row); state.editingTpl = null; toast("Document saved.", "ok"); showDocs(); }
+  catch (ex) { console.error(ex); err.textContent = /duplicate|unique/i.test(String(ex?.message)) ? "You already have a document with that short name." : "Couldn't save. Make sure you ran the latest thermo_setup.sql and are signed in as the administrator."; }
+});
+
+/* ----- CSV ----- */
+const csvCell = v => { let t = String(v ?? ""); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return '"' + t.replace(/"/g, '""') + '"'; };
+function downloadCsv(name, rows){
+  const blob = new Blob(["\ufeff" + rows.map(r => r.map(csvCell).join(",")).join("\r\n")], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* =====================================================================
+   THERMODEN: scientific consulting company
+   ===================================================================== */
+/* Companies that ThermoDen sponsors and advises. Edit this list to change the header menu, the footer line, the home page cards and the About page. */
+function networkCards(){
+  return SITE.network.items.map((c, i) => `<article class="card${["", " c2", " c3"][i % 3]}"><h3>${esc(c.name)}</h3><p>${esc(c.line)}</p>
+    <a class="btn ghost small" href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">Visit ${esc(c.domain)} <span class="sr-only">(opens in a new tab)</span>&#8599;</a></article>`).join("");
+}
+function networkLinks(){
+  return `<ul class="netlinks">${SITE.network.items.map(c => `<li><a href="${esc(c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.name)} <span class="sr-only">(opens in a new tab)</span>&#8599;</a><br><span class="muted">${esc(c.line)}</span></li>`).join("")}</ul>`;
+}
+
+const SITE = {
+  id:"thermoden", name:"ThermoDen", short:"ThermoDen", tagline:"Scientific consulting for the Caribbean and beyond", primaryPath:"/services",
+  nav:[["/","Home"],["/services","Services"],["/outlook","Outlook"],["/founders","Founders"],["/about","About"],["/insights","Insights"],["/contact","Contact"]],
+  other:{name:"ThermoGen Biotech", url:THERMOGEN_URL, line:"ThermoDen is the consulting company in the family. Our research and development company is"},
+  network:{menuLabel:"Our companies", daughterLead:"Our research and development company", lead:"Sponsored and advised by ThermoDen", footLine:"ThermoDen sponsors and advises",
+    items:[
+      {name:"LabNinja", domain:"labninja.ai", url:LABNINJA_URL, line:"An AI-powered research platform for scientists. It brings machine learning, statistical analysis, lab notebooks, a protocol builder and data visualisation together in one place."},
+      {name:"Isle Connect", domain:"isleconnect.co", url:ISLECONNECT_URL, line:"A multilingual community board that connects people across the Caribbean islands."},
+      {name:"IsleRide", domain:"isleride.online", url:ISLERIDE_URL, line:"Live minibus schedules and tracking for Saint Lucia and Grenada. Riders see where their bus is, and drivers choose when to share their location."}
+    ]},
+  footBlurb:"Scientific consulting that helps research teams, institutions and early-stage companies plan, document and deliver good science.",
+  foundersLede:"A scientist who teaches and a clinician who runs projects, building a consultancy that is rigorous, practical and rooted in the Caribbean.",
+  foundersTogether:"Denver brings scientific depth, teaching and laboratory discipline. Jamille brings operations, regulatory awareness and project management. They also lead ThermoGen Biotech, our research and development company.",
+  navCta:{label:"Book a call", to:"/contact?topic=call"},
+  contactTitle:"Start a conversation", contactLede:"Tell us what you are working on and where you are stuck. We will reply with a suggested next step.",
+  contactTopics:[{id:"call", label:"Book an introductory call"}, {id:"research", label:"Research strategy or study design"}, {id:"lab", label:"Laboratory systems and documentation"}, {id:"grants", label:"Grants and proposals"}, {id:"teach", label:"Teaching and training"}, {id:"environment", label:"Environmental or public-health monitoring"}, {id:"ops", label:"Operations and regulatory support"}, {id:"other", label:"Something else"}],
+  contactNotes:["We start with a short introductory conversation to understand your goals.","Tell us your timeline and your organisation, so we can suggest a sensible scope.","We work with universities, schools, institutions, communities and early-stage companies, in the Caribbean and elsewhere."],
+  replyTime:"We usually reply within three working days.",
+  insightsLede:"Practical guidance on research practice, grants, teaching and doing science in the Caribbean.",
+  insightCats:["Research practice", "Grants", "Teaching", "Caribbean science", "Company news"],
+  chatGreeting:"Hello! Ask us anything about our consulting services. Please don't share confidential details here.",
+  termsAdvice:"Consulting engagements are governed by a separate written agreement. We are scientists and educators, not lawyers or doctors, and we do not give legal or medical advice."
+};
+
+
+/* Illustration: a stylised arc of Caribbean islands (decorative, not to scale) */
+const ARCHIPELAGO = `<svg class="map" viewBox="30 40 760 190" role="img" aria-label="Stylised illustration of the arc of Caribbean islands, not to scale"><g fill="#2ec0cf" fill-opacity=".3" stroke="#8fe3ec" stroke-opacity=".9" stroke-width="2">
+<path d="M60 74C130 54 200 58 262 68C300 74 330 86 362 80C330 100 280 94 230 88C170 82 108 94 60 74Z"/><ellipse cx="206" cy="132" rx="10" ry="4"/><ellipse cx="302" cy="140" rx="27" ry="8"/>
+<path d="M388 98C422 84 472 88 502 100C482 120 442 126 412 120C398 116 390 108 388 98Z"/><ellipse cx="548" cy="110" rx="28" ry="9"/>
+<circle cx="600" cy="106" r="4"/><circle cx="610" cy="116" r="4.5"/><circle cx="618" cy="128" r="5"/><circle cx="624" cy="140" r="4.5"/><circle cx="631" cy="152" r="5.5"/><circle cx="640" cy="164" r="4.5"/><circle cx="652" cy="174" r="5"/><circle cx="668" cy="182" r="4.5"/>
+<ellipse cx="722" cy="190" rx="24" ry="12"/><ellipse cx="642" cy="200" rx="10" ry="4"/><ellipse cx="688" cy="204" rx="9" ry="4"/></g>
+<g fill="#f5ae3c"><circle cx="631" cy="152" r="6.5"/><circle cx="302" cy="140" r="6"/><circle cx="548" cy="110" r="6"/></g></svg>`;
+
+const SERVICES = [
+  {id:"research", icon:"research", chip:"Plan a study", title:"Research strategy and study design", line:"Turn a question into a study that can be run, defended and published.",
+   get:["A study design and sampling plan","An analysis plan, including sequencing-based studies such as 16S and metagenomics","A feasibility and cost review","A data-management and publication plan"], fit:"New projects, pilot studies, and teams moving into molecular methods."},
+  {id:"lab", icon:"lab", chip:"Set up or tidy a lab", title:"Laboratory systems and documentation", line:"Clear procedures, records and training so your results can be trusted.",
+   get:["Written standard operating procedures","Record-keeping and chain-of-custody templates","Sample handling and storage plans","Staff training and simple competency checks"], fit:"New and growing laboratories, teaching labs, and community or clinical settings. We do not certify or accredit laboratories."},
+  {id:"grants", icon:"grant", chip:"Write a grant", title:"Grant and proposal support", line:"Sharper aims, a clearer plan, and a proposal a reviewer can follow.",
+   get:["Review and editing of aims and narrative","Budget and timeline alignment","Feedback from a reviewer's point of view","Plain-language summaries for non-specialists"], fit:"Early-career investigators, small institutions and community organisations. We help you write; we cannot promise funding."},
+  {id:"teach", icon:"teach", chip:"Teach or train people", title:"STEM education and workforce training", line:"Hands-on teaching for universities, schools and teams.",
+   get:["Workshops and short courses in molecular biology and biotechnology","Curriculum design and review","Guidance on using CRISPR, artificial intelligence and virtual reality in teaching","Mentoring and academic-advising frameworks"], fit:"Universities, colleges, teacher groups, and companies training new staff."},
+  {id:"environment", icon:"environment", chip:"Monitor water, sediment or air", title:"Environmental and public-health monitoring design", line:"Practical ways to measure what is changing in water, sediment and air.",
+   get:["A baseline survey design","Field-friendly measurement plans with laboratory back-up","Data-quality checks","Plain-language reports for communities and decision-makers"], fit:"Coastal communities, municipalities, resorts, non-profits and researchers. Pressures such as sargassum inundation make this a growing need in the region."},
+  {id:"ops", icon:"operations", chip:"Run a project", title:"Operations, regulatory and project management", line:"Keep complex projects on time, compliant and on budget.",
+   get:["Project plans and risk registers","A map of the permitting and ethics pathway","Field logistics plans","Reporting and stakeholder updates"], fit:"Multi-site or multi-partner research, and health-related projects."},
+  {id:"ip", icon:"ip", chip:"Protect an idea", title:"IP readiness and technology translation", line:"Document and sequence your work so you keep your options open.",
+   get:["Invention-disclosure and record-keeping routines","A disclosure-timing checklist","Search planning for existing patents and papers","Preparation for conversations with patent counsel, and sound NDA habits"], fit:"Inventors, university teams and early-stage companies. We are not a law firm and do not give legal advice."},
+  {id:"partners", icon:"partners", chip:"Work in the Caribbean", title:"Caribbean partnerships and engagement", line:"Local context, language and introductions for teams working in the region.",
+   get:["Stakeholder mapping","Support in English, French Creole, French and Spanish for meetings and materials","Help designing partnerships that share benefits fairly"], fit:"International teams, funders and companies working in the region."}
+];
+
+SITE.pages = {
+"/": () => ({title:"", html:`
+  <section class="hero">${RINGS}<div class="wrap hero-grid">
+    <div><h1>Scientific consulting for teams working in the Caribbean and beyond</h1>
+      <p class="lede">ThermoDen helps research groups, institutions and early-stage companies turn good science into funded, documented and well-run projects.</p>
+      <div class="actions"><a class="btn accent" href="#/contact?topic=call">Book an introductory call</a><a class="btn ghost" href="#/services">See all services</a></div></div>
+    <div class="finder" id="finder"><h2>What do you need help with?</h2><div class="chips" role="group" aria-label="Choose what you need">${SERVICES.map((s, i) => `<button class="chip" type="button" data-svc="${i}" aria-pressed="${i === 0}">${esc(s.chip)}</button>`).join("")}</div><div class="finder-result" id="finderResult" aria-live="polite"></div></div></div></section>
+  ${seaWaves()}
+  <section class="section aw"><div class="wrap"><div class="head"><h2>Eight ways we can help</h2><p class="lede">Choose one, or combine them. Every engagement is scoped in writing before work begins.</p></div>
+    <div class="grid g4">${SERVICES.map(s => `<a class="mini" href="#/services?s=${s.id}"><span class="ico">${icon(s.icon)}</span><span><b>${esc(s.title)}</b><small>${esc(s.line)}</small></span></a>`).join("")}</div></div></section>
+  ${wave("var(--paper)", "var(--tint)")}
+  <section class="section tint aw"><div class="wrap"><div class="head"><h2>Why teams work with us</h2></div>
+    <div class="grid g3"><article class="card"><h3>Teachers by training</h3><p>Our founders teach university science. We explain clearly, train your people as we go, and leave you able to run things yourselves.</p></article>
+      <article class="card c2"><h3>Disciplined about records</h3><p>Experience in forensic laboratory work, where careful documentation and chain of custody are part of the job, shapes how we help you keep records that stand up.</p></article>
+      <article class="card c3"><h3>Rooted in the Caribbean</h3><p>We understand the region's institutions, languages and constraints, and we work in English, French Creole, French and Spanish.</p></article></div></div></section>
+  ${wave("var(--tint)", "var(--paper)")}
+  <section class="section aw"><div class="wrap"><div class="head"><h2>How an engagement works</h2><p class="lede">Most projects follow the same four steps. Timings are typical, and we agree them with you in writing.</p></div>
+    <ol class="steps"><li><h4>Introductory call</h4><p>We listen, ask questions and tell you honestly whether we are the right fit.</p></li><li><h4>Scope</h4><p>You receive a written proposal with the deliverables, timeline and fee, usually within a week.</p></li><li><h4>Deliver</h4><p>We do the work with you, with regular check-ins. Strategy sprints often take 2 to 4 weeks, and project support 1 to 6 months.</p></li><li><h4>Hand over</h4><p>You get clear documents and, where useful, training, so the work keeps going after we step back.</p></li></ol></div></section>
+  ${wave("var(--paper)", "var(--tint)")}
+  <section class="section tint aw"><div class="wrap"><div class="regionband"><div><h2>Caribbean roots, global reach</h2><p>We understand the region's institutions, languages and constraints, and we work in English, French Creole, French and Spanish. We also work with teams elsewhere who need a thoughtful partner for projects in the Caribbean.</p><div class="actions" style="margin-top:1rem"><a class="btn accent" href="#/founders">Meet the founders</a></div></div>${ARCHIPELAGO}</div></div></section>
+  ${wave("var(--tint)", "var(--paper)")}
+  <section class="section aw" id="network"><div class="wrap"><div class="head"><h2>Companies we sponsor and advise</h2><p class="lede">ThermoDen sponsors and consults for a small group of independent companies. Each has its own team, website and terms. We help them plan, document and deliver their work.</p></div>
+    <div class="grid g3 netgrid">${networkCards()}</div>
+    <p class="netnote">These companies are independent. ThermoDen acts as sponsor and consultant, and each company is responsible for its own products, services and policies.</p></div></section>
+  ${wave("var(--paper)", "var(--deep)")}
+  <section class="section dark aw"><div class="wrap split"><div><h2>Our research and development company</h2><p class="lede" style="margin-top:1rem">ThermoGen Biotech is ThermoDen's daughter company. It is an early-stage R&amp;D company studying the microbes of Caribbean geothermal springs for medicine and the environment.</p></div>
+    <div style="align-self:center"><a class="btn accent" href="${esc(THERMOGEN_URL)}" target="_blank" rel="noopener noreferrer">Visit ThermoGen Biotech <span class="sr-only">(opens in a new tab)</span>&#8599;</a></div></div></section>`,
+  mount(){
+    const show = i => {
+      const s = SERVICES[i]; $$("#finder .chip").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.svc) === i)));
+      $("#finderResult").innerHTML = `<h3>${esc(s.title)}</h3><p>${esc(s.line)}</p><div class="actions" style="margin:0"><a class="btn small" href="#/services?s=${s.id}">See this service</a><a class="btn ghost small" href="#/contact?topic=${s.id === "ip" || s.id === "partners" ? "other" : s.id}">Talk to us about it</a></div>`;
+    };
+    show(0); $$("#finder .chip").forEach(b => b.addEventListener("click", () => show(Number(b.dataset.svc))));
+  }}),
+
+"/services": ({query}) => ({title:"Services", html:`${pageHead("Services", "Eight services, from planning a study to protecting an idea. Each is scoped in writing before we begin.")}
+  <section class="section aw"><div class="wrap svc-grid">${SERVICES.map(s => `<article class="service" id="${s.id}"><div class="ico">${icon(s.icon)}</div><div><h3>${esc(s.title)}</h3><p style="margin-bottom:.2rem">${esc(s.line)}</p>
+      <h4>What you get</h4><ul>${s.get.map(x => `<li>${esc(x)}</li>`).join("")}</ul><h4>A good fit if</h4><p>${esc(s.fit)}</p>
+      <p><a class="btn small" href="#/contact?topic=${s.id === "ip" || s.id === "partners" ? "other" : s.id}">Talk to us about this</a></p></div></article>`).join("")}</div></section>`,
+  mount(){ if (query.s) { const el = document.getElementById(query.s); if (el) { el.classList.add("hl"); el.scrollIntoView({behavior:"smooth", block:"start"}); } } }}),
+
+"/outlook": () => ({title:"Outlook", html:`${pageHead("Outlook", "Where demand for careful, practical science is growing in the Caribbean and beyond, and where ThermoDen fits.")}
+  <section class="section"><div class="wrap"><div class="head"><h2>Coastal environmental pressures</h2><p class="lede">Sargassum inundations are no longer occasional events. Communities and institutions need dependable, affordable ways to measure and report what is happening.</p></div>
+    <div class="facts"><div class="fact"><b>37.5 million</b><p>metric tonnes of sargassum were recorded in the Atlantic in May 2025, the highest total since monitoring began in 2011.</p><small>UNEP Caribbean Environment Programme</small></div>
+      <div class="fact"><b>US$120 million</b><p>was the estimated cost of cleaning up excess sargassum across the Caribbean in 2018.</p><small>US Environmental Protection Agency</small></div>
+      <div class="fact"><b>119,000 tonnes</b><p>of sargassum were projected to reach Quintana Roo, Mexico, in 2026, up from a record 96,000 the year before. The state's governor puts the cost at about 11% of its economy.</p><small>Reuters, 28 July 2026</small></div></div>
+    <p class="note" style="margin-top:.8rem">Rotting sargassum also releases hydrogen sulfide gas, which can cause respiratory problems (UNEP). <b>Where we fit:</b> environmental and public-health monitoring design.</p></div></section>
+  <section class="section tint"><div class="wrap split"><div><h2>Drug-resistant infections</h2><p>Antimicrobial resistance directly caused an estimated 1.14 million deaths in 2021, and the forecast is 1.91 million a year by 2050 (The Lancet, 2024). Surveillance and diagnosis depend on well-run laboratories and trained staff.</p><p><b>Where we fit:</b> laboratory systems and documentation, and workforce training.</p></div>
+    <div><h2>A growing biotechnology workforce</h2><p>Market reports project plasmid DNA and viral-vector manufacturing to grow by roughly 19% to 20% a year through 2033 (Astute Analytica; Allied Market Research). Growth like that needs people who can work to documented standards.</p><p><b>Where we fit:</b> STEM education, training and IP readiness.</p></div></div></section>
+  <section class="section"><div class="wrap"><div class="head"><h2>What this means for you</h2></div>
+    <div class="grid g3"><article class="card"><h3>If you run a research group</h3><p>Funders and journals expect clear designs and clean records. We help you build both.</p></article><article class="card c2"><h3>If you lead an institution</h3><p>Training and procedures turn individual skill into lasting capacity.</p></article><article class="card c3"><h3>If you are an early-stage company</h3><p>Good documentation and well-timed disclosure keep your options open when partners and investors arrive.</p></article></div>
+    <div class="actions"><a class="btn accent" href="#/contact?topic=call">Book an introductory call</a><a class="btn ghost" href="#/services">See our services</a></div>
+    <p class="note" style="margin-top:1.4rem">Figures are from the sources named under each statistic. They are third-party estimates and may be revised. This page describes market conditions, not a promise of any outcome.</p></div></section>`}),
+
+"/founders": () => foundersPage(),
+
+"/about": () => ({title:"About", html:`${pageHead("About ThermoDen", "A small consultancy that helps good science get funded, documented and delivered.")}
+  <section class="section"><div class="wrap split"><div><h2>Who we are</h2><p>ThermoDen is a scientific consulting company founded by Denver Jn. Baptiste and Jamille Jn. Baptiste. We help research groups, institutions and early-stage companies plan studies, set up laboratory systems, write proposals, train staff and run projects.</p>
+      <p>We started ThermoDen because good science in the Caribbean often runs into the same practical limits: small teams, limited infrastructure and few people to show you the way. We aim to be those people.</p>
+      <h2 style="margin-top:2rem">Who we work with</h2><p>Universities and schools, research institutions, community and public-health organisations, coastal communities, and early-stage companies in the Caribbean and beyond.</p></div>
+    <div class="grid" style="gap:1rem"><div class="card"><h3>Be honest about limits</h3><p>We tell you what is realistic, including when we are not the right fit.</p></div><div class="card c2"><h3>Document everything</h3><p>Clear records make work repeatable, fundable and defensible.</p></div><div class="card c3"><h3>Teach as we go</h3><p>We want you to be able to run things yourselves when we leave.</p></div><div class="card c4"><h3>Start from local context</h3><p>Good plans fit the people, languages and constraints of the place.</p></div></div></div></section>
+  <section class="section tint"><div class="wrap split"><div><h2>Our daughter company</h2><p>ThermoGen Biotech is ThermoDen's research and development company. It is a separate company with its own website, focused on microbes from Caribbean geothermal springs and their use in medicine and the environment. We share founders, and we keep the two companies' work separate so clients and partners always know who they are dealing with.</p>
+      <p><a class="btn ghost" href="${esc(THERMOGEN_URL)}" target="_blank" rel="noopener noreferrer">Visit ThermoGen Biotech <span class="sr-only">(opens in a new tab)</span>&#8599;</a></p></div>
+    <div><h2>Work with us</h2><p>Tell us what you are working on. We will suggest a sensible next step.</p><p><a class="btn accent" href="#/contact?topic=call">Book an introductory call</a></p></div></div></section>
+  <section class="section"><div class="wrap split"><div><h2>Companies we sponsor and advise</h2><p>ThermoDen acts as sponsor and consultant to each of these companies, giving practical guidance on planning, documentation and delivery. They are independent companies with their own websites, and each is responsible for its own products, services and policies.</p></div>
+    <div>${networkLinks()}</div></div></section>`}),
+
+"/insights": () => insightsPage(),
+"/contact": q => contactPage(q),
+"/privacy": () => legalPage("privacy"),
+"/terms": () => legalPage("terms")
+};
+
+/* ---------- Start ---------- */
+async function checkAdmin(){
+  try { const a = await api.session(); state.isAdmin = !!a; if (a) store.set("admin", true); } catch {}
+  adminCheckDone();
+}
+document.addEventListener("click", e => { if (e.target.closest("[data-skip]")) { e.preventDefault(); $("#app").focus(); } });
+(function start(){
+  renderChrome();
+  if (DEMO) {
+    const n = $("#demoNote"); n.hidden = false;
+    n.textContent = LIB_BLOCKED ? "The database library could not load (a security setting or the network blocked it), so sample data is shown." : "Demo mode: sample data, nothing is saved. Add your Supabase URL and key in the SETTINGS block at the top of the script to go live.";
+  } else { sb.auth.onAuthStateChange(() => setTimeout(checkAdmin, 0)); }
+  route(); checkAdmin();
+})();
+
+</script>
 </body>
 </html>
